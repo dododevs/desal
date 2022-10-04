@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:clickable="true"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:id="@+id/item_ended_shift_difference_data_upper_container">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/item_ended_shift_difference_data_icon"
+            android:contentDescription="@string/cd_fund_icon"
+            app:tint="@color/darkGray" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_ended_shift_difference_data_value"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"/>
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:id="@+id/item_ended_shift_difference_data_name"
+                android:textColor="@color/colorAccentDark"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/item_ended_shift_difference_data_expand"
+            android:src="@drawable/ic_keyboard_arrow_down"
+            android:contentDescription="@string/cd_more_info"
+            app:tint="@color/darkGray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:id="@+id/item_ended_shift_difference_data_middle_container"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:textSize="19.2sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/item_ended_shift_difference_data_initial_value"/>
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="@string/item_ended_shift_difference_data_initial_value"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/arrow_right"
+            android:contentDescription="@string/cd_initial_to_end_value_icon"
+            app:tint="@color/darkGray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:textSize="19.2sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/item_ended_shift_difference_data_end_value"/>
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="@string/item_ended_shift_difference_data_end_value"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/item_ended_shift_difference_data_lower_container"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="48dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/item_ended_shift_difference_data_badge_container"/>
+
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="8dp"
+        android:background="#eaeaea"/>
+
+</LinearLayout>

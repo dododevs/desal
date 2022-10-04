@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:id="@+id/toolbar"
+            android:background="@android:color/white"
+            app:title="@string/activity_owner_edit_prices_title"
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="@drawable/ic_arrow_back_gray"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        android:id="@+id/activity_owner_edit_prices_container"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:animateLayoutChanges="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/activity_owner_edit_prices_confirm_container"
+            android:background="@drawable/btn_accent_rounded">
+
+            <ProgressBar
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:id="@+id/activity_begin_or_end_shift_wheel"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:id="@+id/activity_owner_edit_prices_confirm"
+                android:focusable="true"
+                android:clickable="true"
+                android:text="@string/activity_begin_or_end_shift_confirm"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="14.8sp"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

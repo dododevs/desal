@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:id="@+id/toolbar"
+            android:background="@android:color/white"
+            app:title="@string/activity_owner_inventory_new_item_title"
+            app:navigationIcon="@drawable/ic_arrow_back_gray"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="54dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="56dp"
+            android:layout_marginBottom="48dp">
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/activity_owner_inventory_new_item_info"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_label"
+                    android:contentDescription="@string/cd_item_name_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/activity_owner_inventory_new_item_name_field_container"
+                    android:layout_marginStart="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_owner_inventory_new_item_name"
+                        android:inputType="textCapSentences"
+                        android:imeOptions="actionNext"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_local_atm"
+                    android:contentDescription="@string/cd_price_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/activity_owner_inventory_new_item_price_field_container"
+                    android:layout_marginStart="16dp">
+
+                    <revolver.desal.view.PromptedEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_owner_inventory_new_item_price"
+                        android:inputType="numberDecimal"
+                        android:imeOptions="actionNext"
+                        app:promptText="€"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/activity_owner_inventory_new_item_description_container"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ic_mode_edit"
+                    android:contentDescription="@string/cd_description_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:gravity="start|top"
+                        android:id="@+id/activity_owner_inventory_new_item_description"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:hint="@string/activity_owner_inventory_new_item_description_hint"
+                        android:imeOptions="actionDone"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/activity_owner_oil_new_item_color_container"
+                android:padding="16dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_color_palette"
+                    android:contentDescription="@string/cd_description_icon"
+                    app:tint="@color/darkGray" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/activity_owner_oil_new_item_color"
+                        android:text="@string/activity_owner_oil_new_item_color_default"
+                        android:textColor="@android:color/black"
+                        android:textSize="14.8sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/activity_owner_oil_new_item_color"
+                        android:textColor="@android:color/secondary_text_dark"
+                        android:textSize="14.8sp"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/activity_owner_oil_new_item_color_icon"
+                    android:src="@drawable/ic_color"
+                    android:contentDescription="@string/cd_description_icon"
+                    app:tint="@android:color/black" />
+
+            </LinearLayout>
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/activity_owner_inventory_new_item_quantity_header"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/activity_owner_oil_new_item_quantity_container"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/ic_oil_bucket"
+                    android:contentDescription="@string/cd_oil_bucket_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|top"
+                        android:id="@+id/activity_owner_oil_new_item_quantity"
+                        android:inputType="number"
+                        android:hint="@string/activity_owner_oil_new_item_quantity_hint"
+                        android:imeOptions="actionDone"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/activity_owner_inventory_new_item_quantity_container"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_quantity"
+                        android:contentDescription="@string/cd_quantity_icon"
+                        app:tint="@color/darkGray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/activity_owner_inventory_new_item_quantity"
+                        android:textColor="?attr/editTextColor"
+                        android:textSize="17.8sp"/>
+
+                </LinearLayout>
+
+                <revolver.desal.view.HorizontalNumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/activity_owner_inventory_new_item_quantity"
+                    app:minimumValue="1"
+                    app:maximumValue="99"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"
+        android:id="@+id/activity_owner_inventory_new_item_snackbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:animateLayoutChanges="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/activity_owner_inventory_new_item_confirm_container"
+            android:background="@drawable/btn_accent_rounded">
+
+            <ProgressBar
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:id="@+id/activity_owner_inventory_new_item_wheel"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:id="@+id/activity_owner_inventory_new_item_confirm"
+                android:focusable="true"
+                android:clickable="true"
+                android:text="@string/activity_owner_inventory_new_item_confirm"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="14.8sp"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

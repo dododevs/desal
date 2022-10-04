@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DeSalToolbarBlob">
+        <attr name="blobText" format="string"/>
+        <attr name="blobIcon" format="integer"/>
+        <attr name="blobPrimaryColor" format="color"/>
+        <attr name="blobAccentColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="MontserratTextView">
+        <attr name="textStyle" format="enum">
+            <enum name="black" value="0"/>
+            <enum name="bold" value="1"/>
+            <enum name="extraBold" value="2"/>
+            <enum name="light" value="3"/>
+            <enum name="medium" value="4"/>
+            <enum name="regular" value="5"/>
+            <enum name="semiBold" value="6"/>
+            <enum name="thin" value="7"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="PromptedEditText">
+        <attr name="promptText" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="HorizontalNumberPicker">
+        <attr name="minimumValue" format="integer"/>
+        <attr name="maximumValue" format="integer"/>
+        <attr name="buttonDrawableColor" format="color"/>
+    </declare-styleable>
+</resources>

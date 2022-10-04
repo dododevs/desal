@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:id="@+id/fragment_employee_new_transaction_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:id="@+id/fragment_employee_new_transaction_title"
+                android:textColor="@android:color/black"
+                android:textSize="18.6sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:id="@+id/fragment_employee_new_transaction_direction_container"
+                android:visibility="gone"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/arrow_left"
+                    android:id="@+id/fragment_employee_new_transaction_direction_icon"
+                    android:contentDescription="@string/cd_transaction_direction_icon"
+                    app:tint="@color/darkGray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/fragment_employee_new_transaction_direction_label"
+                    android:text="@string/transaction_direction_inbound"
+                    android:textColor="@color/darkGray"
+                    android:textSize="13.2sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"
+                android:id="@+id/fragment_employee_new_transaction_details_container">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:id="@+id/fragment_employee_new_transaction_details"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:imeOptions="actionNext"
+                    android:maxLength="140"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <revolver.desal.view.PromptedEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_employee_new_transaction_value"
+                    android:hint="@string/fragment_employee_new_transaction_value_hint"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionDone"
+                    app:promptText="€"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:baselineAligned="false"
+        android:animateLayoutChanges="true">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:enabled="false"
+            android:id="@+id/fragment_employee_new_transaction_enqueue_container"
+            android:background="@drawable/btn_primary_rounded">
+
+            <ProgressBar
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:id="@+id/fragment_employee_new_transaction_enqueue_wheel"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:id="@+id/fragment_employee_new_transaction_enqueue"
+                android:focusable="true"
+                android:clickable="true"
+                android:enabled="false"
+                android:text="@string/fragment_employee_new_transaction_enqueue"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="14.8sp"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:enabled="false"
+            android:id="@+id/fragment_employee_new_transaction_commit_container"
+            android:background="@drawable/btn_accent_rounded">
+
+            <ProgressBar
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:id="@+id/fragment_employee_new_transaction_commit_wheel"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:id="@+id/fragment_employee_new_transaction_commit"
+                android:focusable="true"
+                android:clickable="true"
+                android:enabled="false"
+                android:text="@string/fragment_employee_new_transaction_commit"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="14.8sp"
+                android:textAlignment="center"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

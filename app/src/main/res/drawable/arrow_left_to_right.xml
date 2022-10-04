@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/arrow_left">
+    <target
+        android:animation="@animator/rotation_0_to_180"
+        android:name="path"/>
+</animated-vector>

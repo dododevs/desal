@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_employee_transactions"
+    tools:ignore="UseCompoundDrawables">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/fragment_employee_transactions_pending"
+                android:textColor="@color/darkGray"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:orientation="vertical"
+                    android:id="@+id/fragment_employee_transactions_queue_empty">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/shrug"
+                        android:textStyle="bold"
+                        android:textSize="19.2sp"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/fragment_employee_transactions_queue_empty"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:id="@+id/fragment_employee_transactions_queue_container"
+                    android:visibility="gone"
+                    app:contentPadding="16dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="2.8dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fragment_employee_transactions_queue"
+                        android:scrollbars="none"
+                        android:overScrollMode="never"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="36dp"
+                    android:src="@drawable/ic_send"
+                    android:tint="@android:color/white"
+                    android:visibility="invisible"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:id="@+id/fragment_employee_transactions_commit_pending"
+                    android:padding="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="3dp"
+                    app:elevation="4dp"
+                    app:backgroundTint="@color/colorAccentDark"
+                    app:layout_anchor="@id/fragment_employee_transactions_queue_container"
+                    app:layout_anchorGravity="bottom|end"
+                    android:contentDescription="TODO" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/fragment_employee_transactions_create"
+                android:textColor="@color/darkGray"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/fragment_employee_transactions_new_whatnot"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="2.8dp"
+                app:cardElevation="2dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_whatnot"
+                        android:contentDescription="@string/cd_whatnot_icon"
+                        app:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/transaction_type_whatnot"
+                        android:textColor="@android:color/secondary_text_light"
+                        android:textStyle="bold"
+                        android:textSize="16.8sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/fragment_employee_transactions_new_deposit"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="2.8dp"
+                app:cardElevation="2dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_deposit"
+                        android:contentDescription="@string/cd_deposit_icon"
+                        app:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/transaction_type_deposit"
+                        android:textColor="@android:color/secondary_text_light"
+                        android:textStyle="bold"
+                        android:textSize="16.8sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/fragment_employee_transactions_new_credit_card"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="2.8dp"
+                app:cardElevation="2dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_credit_card"
+                        android:contentDescription="@string/cd_credit_card_icon"
+                        app:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/transaction_type_credit_card"
+                        android:textColor="@android:color/secondary_text_light"
+                        android:textStyle="bold"
+                        android:textSize="16.8sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/fragment_employee_transactions_new_coupon_payment"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="2.8dp"
+                app:cardElevation="2dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_coupon"
+                        android:contentDescription="@string/cd_coupon_icon"
+                        app:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/transaction_type_coupon_payment"
+                        android:textColor="@android:color/secondary_text_light"
+                        android:textStyle="bold"
+                        android:textSize="16.8sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/fab"
+        android:src="@drawable/ic_unarchive"
+        android:tint="@android:color/white"
+        android:focusable="true"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:elevation="6dp"
+        app:backgroundTint="@color/darkGray"
+        app:pressedTranslationZ="6dp"
+        android:contentDescription="TODO" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

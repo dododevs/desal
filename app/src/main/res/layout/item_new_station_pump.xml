@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/item_new_station_pump_display"
+        android:textSize="13.8sp"
+        android:textColor="@android:color/tertiary_text_light"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:id="@+id/item_new_station_pump_fuels_container"/>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/item_new_station_pump_type"
+        android:contentDescription="@string/cd_self_or_patp_icon"
+        app:tint="@color/darkGray" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_drag_handle"
+        android:focusable="true"
+        android:id="@+id/item_new_station_pump_handle"
+        android:contentDescription="@string/cd_handle_icon"
+        app:tint="@color/midGray" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"
+        android:padding="3dp"
+        android:src="@drawable/ic_close"
+        android:focusable="true"
+        android:clickable="true"
+        android:id="@+id/item_new_station_pump_remove"
+        android:contentDescription="@string/cd_handle_icon"
+        app:tint="@color/midGray" />
+
+</LinearLayout>

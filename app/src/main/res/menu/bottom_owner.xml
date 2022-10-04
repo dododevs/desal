@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/bottom_owner_stations"
+        android:id="@+id/bottom_owner_stations"
+        android:icon="@drawable/ic_local_gas_station"/>
+    <item android:title="@string/bottom_owner_inventory"
+        android:id="@+id/bottom_owner_inventory"
+        android:icon="@drawable/ic_store_mall_directory"/>
+    <item android:title="@string/bottom_owner_shifts"
+        android:id="@+id/bottom_owner_shifts"
+        android:icon="@drawable/ic_shift"/>
+</menu>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/refresh">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_owner_station_inventory">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
+                android:id="@+id/fragment_owner_station_inventory_available_items"
+                android:text="@string/fragment_employee_inventory_items"
+                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="64dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:id="@+id/list"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_add"
+            android:tint="@android:color/white"
+            android:id="@+id/fab"
+            android:focusable="true"
+            android:clickable="true"
+            app:elevation="6dp"
+            app:pressedTranslationZ="6dp"
+            app:backgroundTint="@color/colorAccent"
+            app:fabSize="normal"
+            android:contentDescription="TODO" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/fragment_owner_station_inventory_no_items">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/fragment_owner_station_inventory_no_items"
+                android:textColor="@android:color/tertiary_text_light"
+                android:textAlignment="center"
+                android:textSize="13.6sp"/>
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

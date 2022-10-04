@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:id="@+id/activity_owner_station">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:id="@+id/toolbar"
+                android:background="@android:color/white"
+                app:navigationIcon="@drawable/ic_arrow_back_gray">
+
+                <ProgressBar
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/wheel"
+                    android:visibility="gone"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/colorPrimaryDark"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pager"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        android:background="@drawable/dialog_white_rounded_background"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:id="@+id/activity_owner_station_chooser">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/activity_owner_station_chooser_info"
+            android:src="@drawable/ic_local_gas_station"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/cd_station_icon"
+            app:tint="@color/colorPrimaryDark" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/activity_owner_station_chooser_accessories"
+            android:src="@drawable/ic_accessories"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/cd_station_icon"
+            app:tint="@color/midGray" />
+
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/activity_owner_station_chooser_oil"
+            android:src="@drawable/ic_oil"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/cd_station_icon"
+            app:tint="@color/midGray" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/activity_owner_station_chooser_shifts"
+            android:src="@drawable/ic_shift"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="@string/cd_station_icon"
+            app:tint="@color/midGray" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

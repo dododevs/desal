@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_white_rounded_background"
+    android:padding="16dp">
+
+    <revolver.desal.view.MontserratTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/dialog_fortech_total_input_title"
+        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        app:textStyle="semiBold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_oil_bucket"
+            android:contentDescription="@string/cd_fortech_total_litres_icon"
+            app:tint="@color/darkGray" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <revolver.desal.view.PromptedEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:id="@+id/dialog_fortech_total_input_litres"
+                android:inputType="numberDecimal"
+                android:hint="@string/dialog_fortech_total_input_litres_hint"
+                android:imeOptions="actionNext"
+                app:promptText="L"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_local_atm"
+            android:contentDescription="@string/cd_fortech_total_profit_icon"
+            app:tint="@color/darkGray" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <revolver.desal.view.PromptedEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:id="@+id/dialog_fortech_total_input_profit"
+                android:inputType="numberDecimal"
+                android:hint="@string/dialog_fortech_total_input_profit_hint"
+                android:imeOptions="actionDone"
+                app:promptText="€"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/dialog_fortech_total_input_close"
+            android:text="@string/dialog_fortech_total_input_close"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="13.8sp"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/dialog_fortech_total_input_confirm"
+            android:text="@string/dialog_fortech_total_input_confirm"
+            android:textColor="@color/colorAccentDark"
+            android:textStyle="bold"
+            android:textSize="13.8sp"
+            android:textAllCaps="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>

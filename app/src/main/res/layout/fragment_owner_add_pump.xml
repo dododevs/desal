@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_white_rounded_background"
+    tools:ignore="UseCompoundDrawables">
+
+    <revolver.desal.view.MontserratTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/fragment_owner_add_pump_fuels"
+        android:textColor="@color/darkGray"
+        android:textSize="12.8sp"
+        android:textAllCaps="true"
+        app:textStyle="semiBold"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/fragment_owner_add_pump_fuel_selector"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:hint="@string/fragment_owner_add_pump_display_hint"
+                android:id="@+id/fragment_owner_add_pump_display"
+                android:textSize="54sp"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/midGray"
+                android:textStyle="bold"
+                tools:ignore="Autofill" />
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="8dp"
+                android:text="@string/fragment_owner_add_pump_display"
+                android:textColor="@color/darkGray"
+                android:textSize="12.8sp"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/fragment_owner_add_pump_type_container"
+            android:focusable="true"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:id="@+id/fragment_owner_add_pump_type_self"
+                android:src="@drawable/ic_local_gas_station"
+                android:contentDescription="@string/cd_self_icon"
+                app:tint="@color/darkGray" />
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:translationX="-24dp"
+                android:alpha="0"
+                android:id="@+id/fragment_owner_add_pump_type_patp"
+                android:src="@drawable/ic_patp"
+                android:contentDescription="@string/cd_patp_icon"
+                app:tint="@color/darkGray" />
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/fragment_owner_add_pump_type"
+                android:text="@string/fragment_owner_add_pump_type"
+                android:textColor="@color/darkGray"
+                android:textSize="12.8sp"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="16dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/fragment_owner_add_pump_cancel"
+            android:text="@string/CANCEL"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="13.8sp"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/fragment_owner_add_pump_done"
+            android:text="@string/fragment_owner_add_pump_done"
+            android:textColor="@color/colorAccentDark"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textAllCaps="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>

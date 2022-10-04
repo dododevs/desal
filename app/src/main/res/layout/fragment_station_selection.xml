@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_white_rounded_background"
+    android:padding="16dp">
+
+    <revolver.desal.view.MontserratTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_station_selection_title"
+        android:textColor="@color/darkGray"
+        android:textAllCaps="true"
+        app:textStyle="semiBold"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/fragment_station_selection_container"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:text="@string/fragment_station_selection_footer"
+        android:textSize="12.8sp"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/fragment_station_selection_cancel"
+            android:text="@string/CANCEL"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="13.8sp"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:enabled="false"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/fragment_station_selection_choose"
+            android:text="@string/fragment_station_selection_choose"
+            android:textColor="@color/darkGray"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textAllCaps="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>

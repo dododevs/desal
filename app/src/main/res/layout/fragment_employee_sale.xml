@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:id="@+id/fragment_employee_sale_collapsed">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:id="@+id/fragment_employee_sale_title"
+            android:textColor="@android:color/black"
+            android:textSize="18.6sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:id="@+id/fragment_employee_sale_quantity"
+                android:textColor="@android:color/tertiary_text_light"
+                android:textSize="14.8sp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/fragment_employee_sale_name"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/black"
+                    android:textSize="18.2sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/fragment_employee_sale_description"
+                    android:textColor="@android:color/tertiary_text_light"
+                    android:textSize="13.1sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/fragment_employee_sale_price"
+                android:textSize="14.2sp"
+                android:textColor="@android:color/secondary_text_light"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:padding="16dp"
+                android:id="@+id/fragment_employee_sale_options"
+                android:text="@string/fragment_employee_sale_options"
+                android:textAllCaps="true"
+                android:textSize="13.8sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:drawablePadding="4dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_local_atm"
+                    android:id="@+id/fragment_employee_sale_payment_method"
+                    android:contentDescription="@string/cd_payment_method_icon"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/fragment_employee_sale_payment_method"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/fragment_employee_sale_total_price"
+                    android:textSize="12.8sp"
+                    android:textColor="@android:color/black"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_employee_sale_confirm"
+                android:padding="16dp"
+                android:text="@string/fragment_employee_sale_confirm"
+                android:textAllCaps="true"
+                android:textSize="14.6sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:drawablePadding="4dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:id="@+id/fragment_employee_sale_expanded"
+        android:alpha="0">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:id="@+id/toolbar"
+                android:background="@android:color/white"
+                app:title="@string/activity_sale_title"
+                app:titleTextColor="@android:color/black"
+                app:navigationIcon="@drawable/ic_arrow_back"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:id="@+id/fragment_employee_sale_expanded_quantity"
+                android:textColor="@android:color/tertiary_text_light"
+                android:textSize="14.8sp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/fragment_employee_sale_expanded_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="18.2sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/fragment_employee_sale_expanded_description"
+                    android:textColor="@android:color/tertiary_text_light"
+                    android:textSize="13.1sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/fragment_employee_sale_expanded_price"
+                android:textSize="14.2sp"
+                android:textColor="@android:color/secondary_text_light"/>
+
+        </LinearLayout>
+
+        <revolver.desal.view.MontserratTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/fragment_employee_sale_quantity"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            app:textStyle="semiBold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/fragment_employee_sale_quantity_number_of"
+                android:text="@string/fragment_employee_sale_number_of"
+                android:textSize="16.8sp"
+                android:textColor="@android:color/black"/>
+
+            <revolver.desal.view.HorizontalNumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/fragment_employee_sale_quantity_picker"
+                app:minimumValue="1"/>
+
+        </LinearLayout>
+
+        <revolver.desal.view.MontserratTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/fragment_employee_sale_payment_method"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            app:textStyle="semiBold"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:clickable="true"
+            android:id="@+id/fragment_employee_payment_method_cash"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="2.8dp"
+            app:cardElevation="2dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_local_atm"
+                    android:contentDescription="@string/cd_cash_icon"
+                    app:tint="@color/darkGray" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/payment_method_cash"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textStyle="bold"
+                    android:textSize="16.8sp"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/fragment_employee_payment_method_cash_selected"
+                    android:src="@drawable/ic_done"
+                    android:contentDescription="@string/cd_selected_icon"
+                    app:tint="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:clickable="true"
+            android:id="@+id/fragment_employee_payment_method_credit_card"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="2.8dp"
+            app:cardElevation="2dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_credit_card"
+                    android:contentDescription="@string/cd_credit_card_icon"
+                    app:tint="@color/darkGray" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/payment_method_credit_card"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textStyle="bold"
+                    android:textSize="16.8sp"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/fragment_employee_payment_method_credit_card_selected"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_done"
+                    android:contentDescription="@string/cd_selected_icon"
+                    app:tint="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:clickable="true"
+            android:id="@+id/fragment_employee_payment_method_coupon"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="2.8dp"
+            app:cardElevation="2dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_coupon"
+                    android:contentDescription="@string/cd_coupon_icon"
+                    app:tint="@color/darkGray" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/payment_method_coupon"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textStyle="bold"
+                    android:textSize="16.8sp"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/fragment_employee_payment_method_coupon_selected"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_done"
+                    android:contentDescription="@string/cd_selected_icon"
+                    app:tint="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <revolver.desal.view.MontserratTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="@string/fragment_employee_sale_total"
+                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                app:textStyle="semiBold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/fragment_employee_sale_expanded_total_price"
+                android:textColor="@android:color/black"
+                android:textSize="16.2sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="512dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:background="@android:color/white"
+                android:elevation="8dp"
+                android:animateLayoutChanges="true">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:id="@+id/fragment_employee_sale_confirm_container"
+                    android:background="@drawable/btn_accent_rounded">
+
+                    <ProgressBar
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:id="@+id/fragment_employee_sale_expanded_confirm_wheel"
+                        android:visibility="gone"
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@android:color/white"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:id="@+id/fragment_employee_sale_expanded_confirm_label"
+                        android:text="@string/fragment_employee_sale_confirm"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:textSize="14.8sp"
+                        android:textAlignment="center"/>
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

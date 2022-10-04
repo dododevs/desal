@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fragment_owner_station_shifts_menu">
+        <item>Dimentica turno</item>
+        <item>Annulla revisione</item>
+    </string-array>
+</resources>

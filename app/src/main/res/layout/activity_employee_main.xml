@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:id="@+id/toolbar"
+            android:background="@android:color/white"
+            app:title="@string/activity_employee_title"
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="@drawable/ic_account_circle">
+
+            <revolver.desal.view.DeSalToolbarBlob
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/blob"
+                android:visibility="gone"
+                android:focusable="true"
+                android:clickable="true"
+                app:blobText="@string/blob_station_empty"
+                app:blobIcon="@drawable/ic_local_gas_station"
+                app:blobAccentColor="@android:color/white"
+                app:blobPrimaryColor="@color/colorPrimaryDark"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="54dp"
+        android:id="@+id/frame"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:id="@+id/bottom"
+        app:menu="@menu/bottom_employee"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

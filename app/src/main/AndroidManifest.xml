@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".DeSal"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        
+        <activity android:name=".ui.activity.LoadingActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.activity.MainActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+        </activity>
+
+        <activity android:name=".ui.activity.employee.EmployeeMainActivity"/>
+        <activity android:name=".ui.activity.employee.BeginOrEndShiftActivity"/>
+        <activity android:name=".ui.activity.employee.ShiftActivity"/>
+        <activity android:name=".ui.activity.employee.PendingValidationActivity"/>
+        <activity android:name=".ui.activity.AddPricesActivity"/>
+        <activity android:name=".ui.activity.ShiftsArchiveActivity"/>
+
+        <activity android:name=".ui.activity.owner.OwnerMainActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerNewStationActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerStationActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerInventoryNewItemActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerShiftRevisionActivity"/>
+        <activity android:name=".ui.activity.ShiftSummaryActivity"/>
+        <activity android:name=".ui.activity.ShiftPdfActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerValidationActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="desal.altervista.org"
+                    android:pathPattern="/api/v2/users/verify/.*"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.ShiftPdfPrintActivity"/>
+        <activity android:name=".ui.activity.edit.ShiftGplClockEditActivity"/>
+        <activity android:name=".ui.activity.edit.ShiftPumpDataEditActivity"/>
+        <activity android:name=".ui.activity.edit.ShiftFundEditActivity"/>
+        <activity android:name=".ui.activity.owner.OwnerShiftRevisionEmployeeDataActivity"/>
+        <activity android:name=".ui.activity.employee.TransactionsListActivity"/>
+    </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:mimeType="application/pdf"/>
+        </intent>
+    </queries>
+</manifest>

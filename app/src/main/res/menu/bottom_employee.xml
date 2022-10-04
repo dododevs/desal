@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/bottom_employee_station"
+        android:id="@+id/bottom_employee_station"
+        android:icon="@drawable/ic_local_gas_station"/>
+    <item android:title="@string/bottom_employee_inventory"
+        android:id="@+id/bottom_employee_inventory"
+        android:icon="@drawable/ic_store_mall_directory"/>
+    <item android:title="@string/bottom_employee_transactions"
+        android:id="@+id/bottom_employee_transactions"
+        android:icon="@drawable/ic_attach_money"/>
+</menu>

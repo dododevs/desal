@@ -2,6 +2,8 @@ package revolver.desal.ui.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,12 +19,12 @@ import revolver.desal.ui.fragment.employee.EmployeeInventoryFragment;
 import revolver.desal.util.ui.TextUtils;
 import revolver.desal.util.ui.ViewUtils;
 
+@SuppressLint("NotifyDataSetChanged")
 public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView mNameView;
         final TextView mDescriptionView;
-        final TextView mQuantityView;
         final TextView mPriceView;
 
         ViewHolder(View v) {
@@ -33,7 +35,6 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
 
             mNameView = v.findViewById(R.id.item_shop_name);
             mDescriptionView = v.findViewById(R.id.item_shop_description);
-            mQuantityView = v.findViewById(R.id.item_shop_quantity);
             mPriceView = v.findViewById(R.id.item_shop_price);
         }
     }
@@ -63,7 +64,6 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
         final String name = TextUtils.capitalizeFirst(item.getName());
         viewHolder.mNameView.setText(name);
         viewHolder.mPriceView.setText(String.format(Locale.ITALIAN, "€%.2f", item.getPrice()));
-        viewHolder.mQuantityView.setText(String.format(Locale.ITALIAN, "%d x", item.getAvailableQuantity()));
         viewHolder.mDescriptionView.setText(item.getDescription());
         viewHolder.itemView.setOnClickListener(v -> {
             if (mClickListener != null) {

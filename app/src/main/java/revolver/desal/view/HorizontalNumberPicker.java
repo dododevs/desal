@@ -43,7 +43,7 @@ public class HorizontalNumberPicker extends LinearLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HorizontalNumberPicker);
         setMinimumValue(a.getInt(R.styleable.HorizontalNumberPicker_minimumValue, 0));
-        setMaximumValue(a.getInt(R.styleable.HorizontalNumberPicker_maximumValue, 10));
+        setMaximumValue(a.getInt(R.styleable.HorizontalNumberPicker_maximumValue, 1000));
         setColor(a.getColor(R.styleable.HorizontalNumberPicker_buttonDrawableColor, Color.BLACK));
 
         a.recycle();

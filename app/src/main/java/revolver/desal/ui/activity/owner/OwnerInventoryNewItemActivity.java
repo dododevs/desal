@@ -45,9 +45,7 @@ public class OwnerInventoryNewItemActivity extends AppCompatActivity {
     private TextInputEditText mNameView;
     private PromptedEditText mPriceView;
     private TextInputEditText mDescriptionView;
-    private HorizontalNumberPicker mQuantityView;
 
-    private TextInputEditText mOilQuantityView;
     private ImageView mOilColorView;
     private TextView mOilColorNameView;
 
@@ -84,33 +82,23 @@ public class OwnerInventoryNewItemActivity extends AppCompatActivity {
                 findViewById(R.id.activity_owner_inventory_new_item_name_field_container);
         final TextInputLayout priceFieldContainer =
                 findViewById(R.id.activity_owner_inventory_new_item_price_field_container);
-        final View quantityContainer =
-                findViewById(R.id.activity_owner_inventory_new_item_quantity_container);
         final View descriptionContainer =
                 findViewById(R.id.activity_owner_inventory_new_item_description_container);
-        final View oilQuantityContainer =
-                findViewById(R.id.activity_owner_oil_new_item_quantity_container);
         final View colorPickerButton =
                 findViewById(R.id.activity_owner_oil_new_item_color_container);
 
         mNameView = findViewById(R.id.activity_owner_inventory_new_item_name);
         mPriceView = findViewById(R.id.activity_owner_inventory_new_item_price);
         mDescriptionView = findViewById(R.id.activity_owner_inventory_new_item_description);
-        mQuantityView = findViewById(R.id.activity_owner_inventory_new_item_quantity);
-        mOilQuantityView = findViewById(R.id.activity_owner_oil_new_item_quantity);
         mOilColorView = findViewById(R.id.activity_owner_oil_new_item_color_icon);
         mOilColorNameView = findViewById(R.id.activity_owner_oil_new_item_color);
 
         if (mItemType == ItemType.ACCESSORY) {
-            quantityContainer.setVisibility(View.VISIBLE);
-            oilQuantityContainer.setVisibility(View.GONE);
             colorPickerButton.setVisibility(View.GONE);
             nameFieldContainer.setHint(getString(R.string.activity_owner_inventory_new_item_name_hint));
             priceFieldContainer.setHint(getString(R.string.activity_owner_inventory_new_item_price_hint));
             descriptionContainer.setVisibility(View.VISIBLE);
         } else if (mItemType == ItemType.OIL) {
-            quantityContainer.setVisibility(View.GONE);
-            oilQuantityContainer.setVisibility(View.VISIBLE);
             colorPickerButton.setVisibility(View.VISIBLE);
             nameFieldContainer.setHint(getString(R.string.activity_owner_oil_new_item_name_hint));
             priceFieldContainer.setHint(getString(R.string.activity_owner_oil_new_item_price_hint));
@@ -148,7 +136,6 @@ public class OwnerInventoryNewItemActivity extends AppCompatActivity {
     private void submitDataOrComplain() {
         final String name, description;
         final double price;
-        final int quantity;
 
         if (mNameView.getText() != null && mNameView.getText().length() > 0) {
             name = mNameView.getText().toString();
@@ -172,22 +159,8 @@ public class OwnerInventoryNewItemActivity extends AppCompatActivity {
         }
 
         if (mItemType == ItemType.OIL) {
-            if (mOilQuantityView.getText() != null) {
-                try {
-                    quantity = Integer.parseInt(mOilQuantityView.getText().toString());
-                } catch (NumberFormatException e) {
-                    Snacks.normal(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
-                    mOilQuantityView.setError(getString(R.string.error_field_value_invalid));
-                    return;
-                }
-            } else {
-                Snacks.normal(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
-                mOilQuantityView.setError(getString(R.string.error_field_value_invalid));
-                return;
-            }
             description = mOilColorNameView.getText().toString();
         } else {
-            quantity = mQuantityView.getValue();
             if (mDescriptionView.getText() != null && mDescriptionView.getText().length() > 0) {
                 description = mDescriptionView.getText().toString();
             } else {
@@ -200,12 +173,12 @@ public class OwnerInventoryNewItemActivity extends AppCompatActivity {
         startLoading();
         if (mItem != null) {
             getInventoryService().updateItem(new ItemUpdateRequest(
-                    new Item(mItem.getOid(), mItem.getSid(), name, quantity,
+                    new Item(mItem.getOid(), mItem.getSid(), name, -1,
                             mItemType == ItemType.OIL ? Unit.LITERS : Unit.PIECES, price, description)))
                     .enqueue(new UpdateItemResponseCallback());
         } else {
             getInventoryService().createNewItem(mStation.getSid(), new ItemCreationRequest(
-                    new Item(null, null, name, quantity, mItemType == ItemType.OIL ?
+                    new Item(null, null, name, -1, mItemType == ItemType.OIL ?
                             Unit.LITERS : Unit.PIECES, price, description)))
                     .enqueue(new CreateNewItemResponseCallback());
         }

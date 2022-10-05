@@ -18,6 +18,6 @@ public interface TransactionsService {
     @POST("transactions/{rid}")
     Call<TransactionsResponse> getTransactionsForShift(@Path("rid") String rid);
 
-    @POST("transactions/onPumpRemoved/{tid}")
+    @POST("transactions/{tid}/remove")
     Call<BaseResponse> removeTransaction(@Path("tid") String tid);
 }

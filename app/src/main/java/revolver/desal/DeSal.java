@@ -17,7 +17,7 @@ import revolver.desal.util.ui.M;
 
 public class DeSal extends Application {
 
-    public static final String API_URL = "https://desal.altervista.org/api/v2/";
+    public static final String API_URL = "https://desal.altervista.org/staging/api/v2/";
 
     @Override
     public void onCreate() {

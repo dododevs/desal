@@ -25,6 +25,6 @@ public interface InventoryService {
     @POST("inventory/sell")
     Call<BaseResponse> sellItem(@Query("sid") String sid, @Body SaleItem item);
 
-    @POST("inventory/{oid}/onPumpRemoved")
+    @POST("inventory/{oid}/remove")
     Call<BaseResponse> removeItem(@Path("oid") String oid);
 }

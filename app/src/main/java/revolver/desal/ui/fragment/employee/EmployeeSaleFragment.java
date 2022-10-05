@@ -131,7 +131,7 @@ public class EmployeeSaleFragment extends BottomSheetDialogFragment {
         expandedDescriptionView.setText(descriptionView.getText());
 
         quantityPickerView.setMinimumValue(1);
-        quantityPickerView.setMaximumValue(mItem.getAvailableQuantity());
+        quantityPickerView.setMaximumValue(9999);
         quantityPickerView.setOnValueChangedListener((picker, oldVal, newVal) -> {
             mSaleQuantity = newVal;
 

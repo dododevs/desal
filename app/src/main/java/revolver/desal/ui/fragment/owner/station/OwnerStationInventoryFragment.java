@@ -12,6 +12,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -189,6 +191,7 @@ public class OwnerStationInventoryFragment extends Fragment {
 
             final BaseResponse body = response.body();
             if (body == null) {
+                Log.d("ItemDeletionRCallback", "null body");
                 Snacks.shorter(mSnackbarContainer, R.string.error_generic);
                 return;
             }
@@ -209,6 +212,7 @@ public class OwnerStationInventoryFragment extends Fragment {
         @Override
         public void onFailure(@NonNull Call<BaseResponse> call, @NonNull Throwable t) {
             mProgressDialog.dismiss();
+            Log.d("ItemDeletionRCallback", "", t);
             Snacks.shorter(mSnackbarContainer, R.string.error_generic);
         }
     }

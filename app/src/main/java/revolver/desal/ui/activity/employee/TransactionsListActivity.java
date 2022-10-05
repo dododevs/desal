@@ -68,7 +68,7 @@ public class TransactionsListActivity extends AppCompatActivity implements Refre
         mAdapter.setOnTransactionClickedListener(transaction -> buildRemoveTransactionDialog(transaction).show());
 
         mRefresher = findViewById(R.id.refresh);
-        mRefresher.setOnRefreshListener(() -> doRefresh());
+        mRefresher.setOnRefreshListener(this::doRefresh);
 
         mLoadingView = findViewById(R.id.dim);
         mSnackbarContainer = findViewById(R.id.activity_transactions_list);

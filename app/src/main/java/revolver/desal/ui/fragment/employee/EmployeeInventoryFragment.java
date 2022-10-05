@@ -71,7 +71,7 @@ public class EmployeeInventoryFragment extends Fragment implements RefreshableCo
         filterCard.setOnClickListener(v13 -> buildFilterDialog().show());
 
         mAdapter.setOnItemClickListener((v12, item) -> {
-            if (item.getAvailableQuantity() > 0) {
+            if (item.getAvailableQuantity() != 0) {
                 EmployeeSaleFragment.forItem(EmployeeInventoryFragment.this, item)
                         .show(getParentFragmentManager(), "saleDialog");
             } else {

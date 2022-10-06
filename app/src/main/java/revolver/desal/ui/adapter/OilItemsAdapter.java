@@ -23,7 +23,7 @@ public class OilItemsAdapter extends RecyclerView.Adapter<OilItemsAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView mIconView;
         final TextView mNameView;
-        final TextView mQuantityAndPriceView;
+        final TextView mPriceView;
         final LinearLayout mContainer;
 
         ViewHolder(View v) {
@@ -35,7 +35,7 @@ public class OilItemsAdapter extends RecyclerView.Adapter<OilItemsAdapter.ViewHo
 
             mIconView = v.findViewById(R.id.item_oil_icon);
             mNameView = v.findViewById(R.id.item_oil_name);
-            mQuantityAndPriceView = v.findViewById(R.id.item_oil_quantity_and_price);
+            mPriceView = v.findViewById(R.id.item_oil_price);
             mContainer = v.findViewById(R.id.item_oil_container);
         }
     }
@@ -62,8 +62,7 @@ public class OilItemsAdapter extends RecyclerView.Adapter<OilItemsAdapter.ViewHo
         viewHolder.mIconView.setImageTintList(ColorStateList.valueOf(themeColor));
         viewHolder.mContainer.setBackgroundColor(themeColor);
         viewHolder.mNameView.setText(TextUtils.capitalizeFirst(item.getName()));
-        viewHolder.mQuantityAndPriceView.setText(String.format(Locale.ITALIAN, "%d L  @  %.2f €",
-                item.getAvailableQuantity(), item.getPrice()));
+        viewHolder.mPriceView.setText(String.format(Locale.ITALIAN, "%.2f €/L", item.getPrice()));
         viewHolder.itemView.setOnClickListener(v -> {
             if (mClickListener != null) {
                 mClickListener.onItemClicked(v, mItems.get(viewHolder.getAdapterPosition()));

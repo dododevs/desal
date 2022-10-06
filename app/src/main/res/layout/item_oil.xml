@@ -56,7 +56,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:id="@+id/item_oil_quantity_and_price"
+                android:id="@+id/item_oil_price"
                 android:textColor="@android:color/white"
                 android:textSize="13.2sp"
                 android:textAlignment="center"/>

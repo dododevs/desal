@@ -29,10 +29,10 @@ import revolver.desal.api.model.response.ShiftsArchiveResponse;
 import revolver.desal.api.services.ShiftsService;
 import revolver.desal.api.services.shifts.Shift;
 import revolver.desal.api.services.stations.GasStation;
+import revolver.desal.ui.activity.DeSalFragmentHostActivity;
 import revolver.desal.ui.activity.MainActivity;
 import revolver.desal.ui.activity.ShiftSummaryActivity;
 import revolver.desal.ui.activity.owner.OwnerShiftRevisionActivity;
-import revolver.desal.ui.activity.owner.OwnerStationActivity;
 import revolver.desal.ui.adapter.ShiftsArchiveAdapter;
 import revolver.desal.util.ui.Snacks;
 import revolver.desal.view.DeSalProgressDialog;
@@ -44,7 +44,7 @@ public class OwnerStationShiftsFragment extends Fragment
     private View mNoShiftsView;
 
     private ShiftsArchiveAdapter mAdapter;
-    private CoordinatorLayout mSnackbarContainer;
+    private View mSnackbarContainer;
 
     @Nullable
     @Override
@@ -74,7 +74,7 @@ public class OwnerStationShiftsFragment extends Fragment
         mRefresher.setOnRefreshListener(this);
 
         mNoShiftsView = v.findViewById(R.id.fragment_owner_station_shifts_no_shifts);
-        mSnackbarContainer = getOwnerStationActivity().getSnackbarContainer();
+        mSnackbarContainer = getParentActivity().getSnackbarContainer();
 
         refreshShiftsArchive();
 
@@ -93,17 +93,17 @@ public class OwnerStationShiftsFragment extends Fragment
     }
 
     private void refreshShiftsArchive() {
-        getOwnerStationActivity().startLoading();
+        getParentActivity().startLoading();
         getShiftsService().getEndedShiftsForStation(getStation().getSid())
                 .enqueue(new ShiftsArchiveResponseCallback());
     }
 
-    private OwnerStationActivity getOwnerStationActivity() {
-        return (OwnerStationActivity) requireActivity();
+    private DeSalFragmentHostActivity getParentActivity() {
+        return (DeSalFragmentHostActivity) requireActivity();
     }
 
     private GasStation getStation() {
-        return getOwnerStationActivity().getStation();
+        return getParentActivity().getStation();
     }
 
     private ShiftsService getShiftsService() {
@@ -160,7 +160,7 @@ public class OwnerStationShiftsFragment extends Fragment
     private class ShiftsArchiveResponseCallback implements Callback<ShiftsArchiveResponse> {
         @Override
         public void onResponse(@NonNull Call<ShiftsArchiveResponse> call, @NonNull Response<ShiftsArchiveResponse> response) {
-            getOwnerStationActivity().stopLoading();
+            getParentActivity().stopLoading();
             if (mRefresher.isRefreshing()) {
                 mRefresher.setRefreshing(false);
             }
@@ -190,7 +190,7 @@ public class OwnerStationShiftsFragment extends Fragment
 
         @Override
         public void onFailure(@NonNull Call<ShiftsArchiveResponse> call, @NonNull Throwable t) {
-            getOwnerStationActivity().stopLoading();
+            getParentActivity().stopLoading();
             if (mRefresher.isRefreshing()) {
                 mRefresher.setRefreshing(false);
             }

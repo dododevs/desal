@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import revolver.desal.R;
 import revolver.desal.api.services.stations.GasStation;
+import revolver.desal.ui.activity.DeSalFragmentHostActivity;
 import revolver.desal.ui.fragment.owner.station.OwnerStationInfoFragment;
 import revolver.desal.ui.fragment.owner.station.OwnerStationInventoryFragment;
 import revolver.desal.ui.fragment.owner.station.OwnerStationOilFragment;
@@ -27,7 +28,7 @@ import revolver.desal.ui.fragment.owner.station.OwnerStationShiftsFragment;
 import revolver.desal.util.ui.ColorUtils;
 import revolver.desal.util.ui.TextUtils;
 
-public class OwnerStationActivity extends AppCompatActivity {
+public class OwnerStationActivity extends AppCompatActivity implements DeSalFragmentHostActivity {
 
     private GasStation mStation;
 

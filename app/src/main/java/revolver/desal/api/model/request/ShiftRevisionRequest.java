@@ -9,7 +9,11 @@ public class ShiftRevisionRequest {
     @SerializedName("revision")
     private final RevisionData revisionData;
 
-    public ShiftRevisionRequest(RevisionData data) {
+    @SerializedName("ignoreMaximumDifference")
+    private final boolean ignoreMaximumDifference;
+
+    public ShiftRevisionRequest(RevisionData data, boolean ignoreMaximumDifference) {
         this.revisionData = data;
+        this.ignoreMaximumDifference = ignoreMaximumDifference;
     }
 }

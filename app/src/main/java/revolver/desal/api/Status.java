@@ -39,6 +39,7 @@ public class Status {
     public static final int END_SHIFT_PUMP_MISMATCH   = 0x4B;
     public static final int SHIFT_ALREADY_REVISED     = 0x4C;
     public static final int SHIFT_NOT_REVISED         = 0x4D;
+    public static final int MAX_DIFF_EXCEEDED         = 0x4F;
 
     public static final int BAD_REQUEST               = 0x190;
     public static final int ENDPOINT_NOT_FOUND        = 0x194;
@@ -104,6 +105,8 @@ public class Status {
                 return context.getString(R.string.error_shift_already_revised);
             case SHIFT_NOT_REVISED:
                 return context.getString(R.string.error_shift_not_revised);
+            case MAX_DIFF_EXCEEDED:
+                return context.getString(R.string.error_max_diff_exceeded);
             case BAD_REQUEST:
                 return context.getString(R.string.error_bad_request);
             case ENDPOINT_NOT_FOUND:

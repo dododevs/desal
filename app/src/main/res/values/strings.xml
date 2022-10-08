@@ -482,6 +482,10 @@
     <string name="activity_owner_shift_revision_fortech_profit">Carburanti incassi</string>
     <string name="dialog_pump_end_value_difference_error">La differenza dev\'essere compresa tra 0 e 6000 L</string>
     <string name="dialog_pump_value_input_initial">Valore iniziale: %.2f</string>
+    <string name="error_max_diff_exceeded">Differenza anomala tra incasso stimato e reale.</string>
+    <string name="dialog_max_diff_exceeded_title">Attenzione</string>
+    <string name="dialog_max_diff_exceeded_msg">La differenza risulta superiore alla soglia impostata. Questo potrebbe indicare un errore nell\'inserimento dei dati. Procedere comunque alla revisione del turno?</string>
+    <string name="dialog_max_diff_exceeded_proceed">Procedi</string>
 
     <array name="fragment_employee_inventory_filters">
         <item>Tutti gli articoli</item>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,8 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
 
     private GasStation mStation;
     private Shift mShift;
+    private RevisionData mRevisionData;
+    private boolean mIgnoreMaximumDifference = false;
 
     private TextInputEditText mFortechTotalLitresView;
     private TextInputEditText mFortechTotalProfitView;
@@ -220,13 +223,13 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
             return;
         }
 
-        final RevisionData revisionData = new RevisionData(
+        mRevisionData = new RevisionData(
                 new FortechTotal(fortechFuelLitres, fortechFuelProfit),
                     new RevisionData.Incomes(privateCardsTotal,
                         new RevisionData.Incomes.Opt(optCashTotal, optCreditCardTotal,
                                 optRefunds, optUnsupplied)));
         startLoading();
-        getShiftsService().reviseShift(mShift.getRid(), new ShiftRevisionRequest(revisionData))
+        getShiftsService().reviseShift(mShift.getRid(), new ShiftRevisionRequest(mRevisionData, false))
                 .enqueue(new ShiftRevisionResponseCallback());
     }
 
@@ -244,6 +247,19 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
         return RestAPI.getShiftsService();
     }
 
+    private AlertDialog buildMaximumDifferenceExceededConfirmationDialog() {
+        return new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_max_diff_exceeded_title)
+                .setMessage(R.string.dialog_max_diff_exceeded_msg)
+                .setPositiveButton(R.string.dialog_max_diff_exceeded_proceed, (dialog, which) -> {
+                    startLoading();
+                    getShiftsService().reviseShift(mShift.getRid(),
+                                    new ShiftRevisionRequest(mRevisionData, true))
+                            .enqueue(new ShiftRevisionResponseCallback());
+                }).setNegativeButton(R.string.CANCEL, (dialog, which) -> dialog.dismiss())
+                .create();
+    }
+
     private class ShiftRevisionResponseCallback implements Callback<BaseResponse> {
         @Override
         public void onResponse(@NonNull Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -251,7 +267,6 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
 
             final BaseResponse body = response.body();
             if (body == null) {
-                Log.d("ShiftRevisionResponseCallback", "null body");
                 Snacks.shorter(mSnackbarContainer, R.string.error_generic);
                 return;
             }
@@ -264,6 +279,8 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
                             OwnerShiftRevisionActivity.this, body.getStatus()),
                         getString(R.string.action_login), v -> startActivity(new Intent(OwnerShiftRevisionActivity.this,
                                 MainActivity.class).putExtra("mode", "login")));
+            } else if (body.getStatus() == Status.MAX_DIFF_EXCEEDED) {
+                buildMaximumDifferenceExceededConfirmationDialog().show();
             } else {
                 Snacks.normal(mSnackbarContainer, Status.getErrorDescription(
                         OwnerShiftRevisionActivity.this, body.getStatus()));
@@ -273,7 +290,6 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
         @Override
         @EverythingIsNonNull
         public void onFailure(Call<BaseResponse> call, Throwable t) {
-            Log.d("ShiftRevisionResponseCallback", "onFailure", t);
             stopLoading();
             Snacks.shorter(mSnackbarContainer, R.string.error_generic);
         }

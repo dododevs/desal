@@ -76,7 +76,7 @@
     <string name="dialog_pump_initial_value_input_field_hint">Valore iniziale</string>
     <string name="dialog_pump_end_value_input_field_hint">Valore finale</string>
     <string name="error_field_value_invalid">Inserisci un valore valido</string>
-    <string name="error_not_all_pumps_have_values">Manca il valore iniziale di qualche erogatore.</string>
+    <string name="error_not_all_pumps_have_values">Manca il valore di qualche erogatore.</string>
     <string name="toast_begin_new_shift_success">Hai creato un nuovo turno, ora è attivo!</string>
     <string name="error_not_all_fields_are_filled">Compila tutti i campi prima di confermare.</string>
     <string name="error_rid_invalid">Il turno di lavoro richiesto non esiste.</string>
@@ -480,6 +480,8 @@
     <string name="dialog_rejected_transactions_close">Chiudi</string>
     <string name="activity_owner_shift_revision_fortech_litres">Carburanti litri</string>
     <string name="activity_owner_shift_revision_fortech_profit">Carburanti incassi</string>
+    <string name="dialog_pump_end_value_difference_error">La differenza dev\'essere compresa tra 0 e 6000 L</string>
+    <string name="dialog_pump_value_input_initial">Valore iniziale: %.2f</string>
 
     <array name="fragment_employee_inventory_filters">
         <item>Tutti gli articoli</item>

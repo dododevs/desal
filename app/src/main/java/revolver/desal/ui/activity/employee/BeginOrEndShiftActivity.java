@@ -1,5 +1,6 @@
 package revolver.desal.ui.activity.employee;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -272,12 +274,18 @@ public class BeginOrEndShiftActivity extends AppCompatActivity {
         TextView fuelView = v.findViewById(R.id.dialog_pump_value_input_fuel);
         ImageView iconView = v.findViewById(R.id.dialog_pump_value_input_icon);
         TextView nameView = v.findViewById(R.id.dialog_pump_value_input_name);
+        TextView initialValueView = v.findViewById(R.id.dialog_pump_value_input_initial);
 
         final EditText valueField = v.findViewById(R.id.dialog_pump_value_input_field);
         if ("begin".equals(mActivityMode)) {
             valueField.setHint(R.string.dialog_pump_initial_value_input_field_hint);
         } else if ("end".equals(mActivityMode)) {
             valueField.setHint(R.string.dialog_pump_end_value_input_field_hint);
+            final ShiftPumpData pumpData = findPumpData(pump);
+            if (pumpData != null) {
+                initialValueView.setVisibility(View.VISIBLE);
+                initialValueView.setText(getString(R.string.dialog_pump_value_input_initial, pumpData.getValue()));
+            }
         }
 
         fuelView.setText(pump.getAvailableFuel().getStringResource());
@@ -295,18 +303,48 @@ public class BeginOrEndShiftActivity extends AppCompatActivity {
 
         builder.setView(v);
         builder.setPositiveButton(R.string.OK, (dialog, which) -> {
+        });
+        builder.setNegativeButton(R.string.CANCEL, (dialog, which) -> dialog.dismiss());
+
+        final AlertDialog alertDialog = builder.create();
+        final View.OnClickListener onPositiveButtonPressedListener = v1 -> {
             double value = Double.parseDouble(valueField.getText().toString().replace(',', '.'));
             value = roundToHundredths(value);
+            if ("end".equals(mActivityMode)) {
+                final ShiftPumpData pumpData = findPumpData(pump);
+                if (pumpData != null) {
+                    final double difference = value - pumpData.getValue();
+                    if (difference <= 0 || difference > 6000.0) {
+                        valueField.setError(getString(R.string.dialog_pump_end_value_difference_error));
+                        return;
+                    }
+                }
+            }
 
             mPumpsValues.put(pump, value);
             valueView.setText(String.format(Locale.ITALIAN, "%.2f", value));
 
             Keyboards.hideOnWindowAttached(valueField);
-            dialog.dismiss();
+            alertDialog.dismiss();
+        };
+        alertDialog.setOnShowListener(dialog -> {
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setOnClickListener(onPositiveButtonPressedListener);
         });
-        builder.setNegativeButton(R.string.CANCEL, (dialog, which) -> dialog.dismiss());
 
-        return builder.create();
+        return alertDialog;
+    }
+
+    private ShiftPumpData findPumpData(GasPump pump) {
+        if (mShift == null || mShift.getInitialData() == null) {
+            return null;
+        }
+        for (final ShiftPumpData pumpData : mShift.getInitialData().getPumpsData()) {
+            if (pump.getPid().equals(pumpData.getPid())) {
+                return pumpData;
+            }
+        }
+        return null;
     }
 
     public static double roundToHundredths(double value) {

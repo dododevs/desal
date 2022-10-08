@@ -97,7 +97,8 @@ public class ShiftActivity extends AppCompatActivity implements ActivityResultCa
         final TextView endShiftView = findViewById(R.id.activity_shift_end);
         endShiftView.setOnClickListener(v -> {
             activityResult.launch(new Intent(ShiftActivity.this, BeginOrEndShiftActivity.class)
-                    .putExtra("mode", "end").putExtra("shift", mShift));
+                    .putExtra("mode", "end")
+                    .putExtra("shift", mShift));
         });
 
         mTransactionsContainer = findViewById(R.id.activity_shift_transactions_container);
@@ -116,16 +117,10 @@ public class ShiftActivity extends AppCompatActivity implements ActivityResultCa
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == END_SHIFT_REQUEST_ID && resultCode == RESULT_OK) {
+    public void onActivityResult(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
             finish();
         }
-    }
-
-    @Override
-    public void onActivityResult(ActivityResult result) {
-
     }
 
     private void switchToNextGplClock() {

@@ -374,7 +374,7 @@
     <string name="activity_shift_summary_coupons">Buoni interni</string>
     <string name="activity_shift_summary_private_cards">Carte private</string>
     <string name="activity_shift_summary_gpl">Totale GPL</string>
-    <string name="activity_shift_summary_fortech_total">Totale %s %s</string>
+    <string name="activity_shift_summary_fortech_total">Totale carburanti</string>
     <string name="activity_shift_summary_accessories">Accessori</string>
     <string name="activity_shift_summary_oil">Olio</string>
     <string name="activity_shift_summary_whatnot">Varie</string>
@@ -478,6 +478,8 @@
     <string name="fragment_shift_pdf_model_rejected">Visualizza le transazioni scartate</string>
     <string name="dialog_rejected_transactions_title">Transazioni scartate</string>
     <string name="dialog_rejected_transactions_close">Chiudi</string>
+    <string name="activity_owner_shift_revision_fortech_litres">Carburanti litri</string>
+    <string name="activity_owner_shift_revision_fortech_profit">Carburanti incassi</string>
 
     <array name="fragment_employee_inventory_filters">
         <item>Tutti gli articoli</item>

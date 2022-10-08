@@ -177,13 +177,9 @@ public class ShiftSummaryActivity extends AppCompatActivity implements Refreshab
         final EstimatedIncomes estimatedIncomes = revision.getEstimatedIncomes();
         mSumContainer.addView(buildSumRow(estimatedIncomes.getInitialFund(),
                 R.string.activity_shift_summary_initial_fund, R.drawable.ic_counter, "-"), params);
-        for (final FortechTotal total : estimatedIncomes.getFortechTotals()) {
-            mSumContainer.addView(buildSumRow(total.getTotalProfit(),
-                    getString(R.string.activity_shift_summary_fortech_total,
-                            getString(total.getFuel().getStringResource()),
-                                getString(total.getType().getStringResource())),
+        mSumContainer.addView(buildSumRow(estimatedIncomes.getFortechTotal().getTotalProfit(),
+                R.string.activity_shift_summary_fortech_total,
                     R.drawable.ic_local_gas_station, "-"), params);
-        }
         mSumContainer.addView(buildSumRow(estimatedIncomes.getGplTotal(),
                 R.string.activity_shift_summary_gpl, R.drawable.ic_local_gas_station, "-"), params);
         mSumContainer.addView(buildSumRow(estimatedIncomes.getAccessoriesTotal(),

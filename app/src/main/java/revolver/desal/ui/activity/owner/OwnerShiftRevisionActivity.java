@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
@@ -33,10 +34,10 @@ import revolver.desal.api.model.response.BaseResponse;
 import revolver.desal.api.model.request.ShiftRevisionRequest;
 import revolver.desal.api.services.ShiftsService;
 import revolver.desal.api.services.shifts.Shift;
+import revolver.desal.api.services.shifts.revision.FortechTotal;
 import revolver.desal.api.services.shifts.revision.RevisionData;
 import revolver.desal.api.services.stations.GasStation;
 import revolver.desal.ui.activity.MainActivity;
-import revolver.desal.ui.adapter.FortechTotalsInputAdapter;
 import revolver.desal.ui.adapter.ShiftsArchiveAdapter;
 import revolver.desal.util.ui.Keyboards;
 import revolver.desal.util.ui.Snacks;
@@ -49,7 +50,8 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
     private GasStation mStation;
     private Shift mShift;
 
-    private FortechTotalsInputAdapter mAdapter;
+    private TextInputEditText mFortechTotalLitresView;
+    private TextInputEditText mFortechTotalProfitView;
 
     private TextInputEditText mOptCashView;
     private TextInputEditText mOptCreditCardsView;
@@ -96,12 +98,8 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
                 .putExtra("station", mStation)
                 .putExtra("shift", mShift)));
 
-        final RecyclerView fortechContainer =
-                findViewById(R.id.activity_owner_shift_revision_fortech_totals_container);
-        fortechContainer.setLayoutManager(new LinearLayoutManager(
-                this, LinearLayoutManager.VERTICAL, false));
-        fortechContainer.setAdapter(mAdapter = new FortechTotalsInputAdapter(mStation.getPrices()));
-
+        mFortechTotalLitresView = findViewById(R.id.activity_owner_shift_revision_fortech_litres);
+        mFortechTotalProfitView = findViewById(R.id.activity_owner_shift_revision_fortech_profit);
         mOptCashView = findViewById(R.id.activity_owner_shift_revision_opt_cash);
         mOptCreditCardsView = findViewById(R.id.activity_owner_shift_revision_opt_credit_card);
         mOptRefundsView = findViewById(R.id.activity_owner_shift_revision_opt_refunds);
@@ -122,8 +120,32 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
     }
 
     private void submitDataOrComplain() {
-        if (!mAdapter.isComplete()) {
-            Snacks.shorter(mSnackbarContainer, R.string.error_not_all_totals_are_filled);
+        final double fortechFuelLitres, fortechFuelProfit;
+        if (mFortechTotalLitresView.getText() != null && mFortechTotalLitresView.getText().length() > 0) {
+            try {
+                fortechFuelLitres = Double.parseDouble(mFortechTotalLitresView.getText().toString());
+            } catch (NumberFormatException e) {
+                mFortechTotalLitresView.setError(getString(R.string.error_field_value_invalid));
+                Snacks.shorter(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
+                return;
+            }
+        } else {
+            Snacks.shorter(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
+            mFortechTotalLitresView.setError(getString(R.string.error_field_value_invalid));
+            return;
+        }
+
+        if (mFortechTotalProfitView.getText() != null && mFortechTotalProfitView.getText().length() > 0) {
+            try {
+                fortechFuelProfit = Double.parseDouble(mFortechTotalProfitView.getText().toString());
+            } catch (NumberFormatException e) {
+                mFortechTotalProfitView.setError(getString(R.string.error_field_value_invalid));
+                Snacks.shorter(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
+                return;
+            }
+        } else {
+            Snacks.shorter(mSnackbarContainer, R.string.error_not_all_fields_are_filled);
+            mFortechTotalProfitView.setError(getString(R.string.error_field_value_invalid));
             return;
         }
 
@@ -198,8 +220,9 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
             return;
         }
 
-        final RevisionData revisionData = new RevisionData(mAdapter.getTotals(),
-                new RevisionData.Incomes(privateCardsTotal,
+        final RevisionData revisionData = new RevisionData(
+                new FortechTotal(fortechFuelLitres, fortechFuelProfit),
+                    new RevisionData.Incomes(privateCardsTotal,
                         new RevisionData.Incomes.Opt(optCashTotal, optCreditCardTotal,
                                 optRefunds, optUnsupplied)));
         startLoading();
@@ -228,6 +251,7 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
 
             final BaseResponse body = response.body();
             if (body == null) {
+                Log.d("ShiftRevisionResponseCallback", "null body");
                 Snacks.shorter(mSnackbarContainer, R.string.error_generic);
                 return;
             }
@@ -249,6 +273,7 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
         @Override
         @EverythingIsNonNull
         public void onFailure(Call<BaseResponse> call, Throwable t) {
+            Log.d("ShiftRevisionResponseCallback", "onFailure", t);
             stopLoading();
             Snacks.shorter(mSnackbarContainer, R.string.error_generic);
         }

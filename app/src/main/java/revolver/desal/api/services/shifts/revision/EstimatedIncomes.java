@@ -3,21 +3,15 @@ package revolver.desal.api.services.shifts.revision;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
-import revolver.desal.api.adapter.FortechTotalsAdapter;
 
 public class EstimatedIncomes implements Parcelable {
 
     @SerializedName("initialFund")
     private final double initialFund;
 
-    @SerializedName("fortechTotals")
-    @JsonAdapter(FortechTotalsAdapter.class)
-    private final List<FortechTotal> fortechTotals;
+    @SerializedName("fortechTotal")
+    private final FortechTotal fortechTotal;
 
     @SerializedName("gplTotal")
     private final double gplTotal;
@@ -41,8 +35,8 @@ public class EstimatedIncomes implements Parcelable {
         return initialFund;
     }
 
-    public List<FortechTotal> getFortechTotals() {
-        return fortechTotals;
+    public FortechTotal getFortechTotal() {
+        return fortechTotal;
     }
 
     public double getGplTotal() {
@@ -71,7 +65,7 @@ public class EstimatedIncomes implements Parcelable {
 
     private EstimatedIncomes(Parcel src) {
         this.initialFund = src.readDouble();
-        this.fortechTotals = src.createTypedArrayList(FortechTotal.CREATOR);
+        this.fortechTotal = src.readParcelable(FortechTotal.class.getClassLoader());
         this.gplTotal = src.readDouble();
         this.accessoriesTotal = src.readDouble();
         this.oilTotal = src.readDouble();
@@ -83,7 +77,7 @@ public class EstimatedIncomes implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(initialFund);
-        dest.writeTypedList(fortechTotals);
+        dest.writeParcelable(fortechTotal, 0);
         dest.writeDouble(gplTotal);
         dest.writeDouble(accessoriesTotal);
         dest.writeDouble(oilTotal);

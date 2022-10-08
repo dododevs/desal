@@ -20,7 +20,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
-import android.util.ArrayMap;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +55,6 @@ import revolver.desal.api.services.models.PdfModelCompiler;
 import revolver.desal.api.services.shifts.Shift;
 import revolver.desal.api.services.shifts.ShiftPumpData;
 import revolver.desal.api.services.shifts.revision.EstimatedIncomes;
-import revolver.desal.api.services.shifts.revision.FortechTotal;
 import revolver.desal.api.services.stations.Fuel;
 import revolver.desal.api.services.stations.GasPump;
 import revolver.desal.api.services.stations.GasStation;
@@ -255,12 +254,17 @@ public class ShiftPdfModelFragment extends Fragment
             }
             endedTodayShifts.add(mShift);
 
-            final Map<Fuel, Double[]> grandTotals = getGrandTotalForFuels(endedTodayShifts);
-            for (final Map.Entry<Fuel, Double[]> entry : grandTotals.entrySet()) {
-                compiler.setGrandTotalForFuel(entry.getKey(), entry.getValue()[0], entry.getValue()[1]);
-            }
+            final double[] fuelGrandTotal = getGrandTotalForFuels(endedTodayShifts);
+            final double[] gplGrandTotal = getGrandTotalForGpl(endedTodayShifts);
+            compiler.setGrandTotalForFuel(fuelGrandTotal[0], fuelGrandTotal[1]);
+            compiler.setGrandTotalForGpl(gplGrandTotal[0], gplGrandTotal[1]);
             compiler.setGrandTotal(
-                    getGrandTotalInLitres(grandTotals), getGrandTotalProfit(endedTodayShifts));
+                    fuelGrandTotal[0] + gplGrandTotal[0],
+                    getGrandTotalProfit(endedTodayShifts) + gplGrandTotal[1]
+            );
+
+            compiler.setGrandTotalForAccessories(getGrandTotalForAccessories(endedTodayShifts));
+            compiler.setGrandTotalForOil(getGrandTotalForOil(endedTodayShifts));
             mPdfModel = compiler.getCompiledModel();
         } catch (Exception e) {
             return false;
@@ -398,28 +402,18 @@ public class ShiftPdfModelFragment extends Fragment
         }
     }
 
-    private Map<Fuel, Double[]> getGrandTotalForFuels(final List<Shift> endedShifts) {
-        final Map<Fuel, Double[]> totalsForFuels = new ArrayMap<>();
+    private double[] getGrandTotalForFuels(final List<Shift> endedShifts) {
+        double[] totals = new double[] { 0.0, 0.0 };
         for (final Shift endedShift : endedShifts) {
-            for (final FortechTotal total :
-                    endedShift.getRevision().getEstimatedIncomes().getFortechTotals()) {
-                if (!totalsForFuels.containsKey(total.getFuel())) {
-                    totalsForFuels.put(total.getFuel(), new Double[] { 0.0, 0.0 });
-                }
-                Double[] current = totalsForFuels.get(total.getFuel());
-                if (current == null) {
-                    current = new Double[] { 0.0, 0.0 };
-                }
-                current[0] += total.getTotalLitres();
-                current[1] += total.getTotalProfit();
-                totalsForFuels.put(total.getFuel(), current);
-            }
+            totals[0] += endedShift.getRevision()
+                    .getEstimatedIncomes().getFortechTotal().getTotalLitres();
+            totals[1] += endedShift.getRevision()
+                    .getEstimatedIncomes().getFortechTotal().getTotalProfit();
         }
-        totalsForFuels.put(Fuel.GPL, getGrandTotalForGpl(endedShifts));
-        return totalsForFuels;
+        return totals;
     }
 
-    private Double[] getGrandTotalForGpl(final List<Shift> endedShifts) {
+    private double[] getGrandTotalForGpl(final List<Shift> endedShifts) {
         double totalInLitres = 0.0;
         double totalProfit = 0.0;
         for (final Shift endedShift : endedShifts) {
@@ -430,13 +424,21 @@ public class ShiftPdfModelFragment extends Fragment
             }
             totalProfit += endedShift.getRevision().getEstimatedIncomes().getGplTotal();
         }
-        return new Double[] { totalInLitres, totalProfit };
+        return new double[] { totalInLitres, totalProfit };
     }
 
-    private double getGrandTotalInLitres(final Map<Fuel, Double[]> totalForFuels) {
+    private double getGrandTotalForAccessories(final List<Shift> endedShifts) {
         double total = 0.0;
-        for (final Map.Entry<Fuel, Double[]> totalForFuel : totalForFuels.entrySet()) {
-            total += totalForFuel.getValue()[0];
+        for (final Shift endedShift : endedShifts) {
+            total += endedShift.getRevision().getEstimatedIncomes().getAccessoriesTotal();
+        }
+        return total;
+    }
+
+    private double getGrandTotalForOil(final List<Shift> endedShifts) {
+        double total = 0.0;
+        for (final Shift endedShift : endedShifts) {
+            total += endedShift.getRevision().getEstimatedIncomes().getOilTotal();
         }
         return total;
     }
@@ -445,9 +447,7 @@ public class ShiftPdfModelFragment extends Fragment
         double total = 0.0;
         for (final Shift endedShift : endedShifts) {
             final EstimatedIncomes estimatedIncomes = endedShift.getRevision().getEstimatedIncomes();
-            for (final FortechTotal fortechTotal : estimatedIncomes.getFortechTotals()) {
-                total += fortechTotal.getTotalProfit();
-            }
+            total += estimatedIncomes.getFortechTotal().getTotalProfit();
             total += estimatedIncomes.getGplTotal();
             total += estimatedIncomes.getOilTotal();
             total += estimatedIncomes.getAccessoriesTotal();

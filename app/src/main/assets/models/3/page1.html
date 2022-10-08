@@ -1,0 +1,960 @@
+<html>
+<head>
+	<title>Model 4</title>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			width: 1000px;
+			height: 1200px;
+			font-family: Noto Sans;
+		}
+
+		table {
+			border: 2px solid #385D88;
+			border-collapse: collapse;
+			table-layout: fixed;
+		}
+
+		td {
+			border: 1.5px solid #385D88;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		th {
+			border: 1px solid #385D88;
+			border-collapse: collapse;
+		}
+
+		tr {
+			height: 30px;
+		}
+
+		.fuel-row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.fuel-column {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#prices table {
+			width: 162.5px;
+			margin-top: 31px;
+			border-left: 0px solid #385D88;
+		}
+
+		#prices td {
+			text-align: left;
+		}
+
+		#fuel-unleaded-self table {
+			width: 350px;
+			border-right: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#fuel-unleaded-self .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-unleaded-self .wide {
+			width: 100px;
+		}
+
+		#fuel-unleaded-serv table {
+			width: 350px;
+			border-top: 1px solid #385D88;
+			border-right: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#fuel-unleaded-serv .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-unleaded-serv .wide {
+			width: 100px;
+		}
+
+		#fuel-diesel-self table {
+			width: 350px;
+			border-top: 1px solid #385D88;
+			border-right: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#fuel-diesel-self .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-diesel-self .wide {
+			width: 100px;
+		}
+
+		#fuel-diesel-serv table {
+			width: 350px;
+			border-top: 1px solid #385D88;
+			border-right: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+			margin-top: -1px;
+		}
+
+		#fuel-diesel-serv .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-diesel-serv .wide {
+			width: 100px;
+		}
+
+		#fuel-diesel-1 table {
+			width: 487.5px;
+			border-left: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#fuel-diesel-1 .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-diesel-1 .medium {
+			width: 132.5px;
+		}
+
+		#fuel-diesel-1 .wide {
+			width: 162.5px;
+		}
+
+		#fuel-diesel-2 table {
+			width: 487.5px;
+			border-left: 1px solid #385D88;
+			border-top: 1px solid #385D88;
+			border-bottom: 0px solid #385D88;
+		}
+
+		#fuel-diesel-2 .narrow {
+			width: 30px;
+			font-weight: 700;
+		}
+
+		#fuel-diesel-2 .medium {
+			width: 132.5px;
+		}
+
+		#fuel-diesel-2 .wide {
+			width: 162.5px;
+		}
+
+		#fuel-gpl table {
+			width: 650px;
+			border-left: 1px solid #385D88;
+			border-top: 1px solid #385D88;
+			border-bottom: 0px;
+		}
+
+		#fuel-gpl .wide {
+			width: 162.5px;
+		}
+
+		#partial-total table {
+			width: 650px;
+			margin-top: -1px;
+			border-bottom: 1px solid #385D88;
+			border-left: 0px;
+			border-top: 0px;
+		}
+
+		#partial-total .wider {
+			width: 325px;
+		}
+
+
+		#partial-total .wide {
+			width: 162.5px;
+		}
+
+		.stuff table {
+			width: 256px;
+			border-top: 1px solid #385D88;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#deposits table {
+			border-bottom: 2px solid #385D88;
+		}
+
+		#whatnot table {
+			margin-top: -1px;
+			border-top: 2px solid #385D88;
+		}
+
+		#half-total-1 table {
+			border-right: 0px;
+			margin-top: -1px;
+		}
+
+		#half-total-1 th {
+			border-right: 0px;
+			border-bottom: 1px solid #385D88;
+			text-align: right;
+		}
+
+		#phone-credit table {
+			border-top: 1px solid #385D88;
+			border-bottom: 2px solid #385D88;
+			margin-top: -1px;
+		}
+
+		#phone-credit td {
+			text-align: left;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#gpl-clocks table {
+			margin-top: -1.5px;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#gpl-clocks td {
+			text-align: left;
+			border-bottom: 1px solid #385D88;
+		}
+
+		#working-hours table {
+			margin-top: -1.5px;
+			border-top: 2px solid #385D88;
+			border-bottom: 2px solid #385D88;
+		}
+
+		#working-hours td {
+			text-align: left;
+		}
+
+		.stuff-totals table {
+			width: 489.5px;
+			margin-top: -1px;
+		}
+
+		.stuff-totals td {
+			text-align: left;
+		}
+
+		.stuff-totals.split {
+			width: 162.5px;
+		}
+
+		#actual-incomes table {
+			margin-top: -2px;
+		}
+
+		#totals table {
+			margin-top: -2px;
+		}
+
+		#grand-totals table {
+			margin-top: -2px;
+		}
+
+		.title {
+			text-align: center;
+			font-weight: 700;
+			margin: 20px;
+			color: #385D88;
+		}
+
+		.preliminary-info table {
+			width: 100%;
+			table-layout: fixed;
+			text-align: left;
+			border: 0;
+		}
+
+		.preliminary-info th {
+			border: 0;
+			font-weight: 400;
+		}
+
+		.code {
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-size: 2em;
+			font-weight: 700;
+			color: #385D88;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">
+		<h1 id="station-name">VIA FANELLI</h1>
+	</div>
+	<div class="code">
+		<h1 id="station-code">F</h1>
+	</div>
+	<div class="preliminary-info">
+		<table>
+			<tr>
+				<th id="employee">DIPENDENTE:&nbsp;</th>
+				<th id="date">GIORNO:&nbsp;</th>
+				<th id="shift">TURNO:&nbsp;</th>
+			</tr>
+		</table>
+	</div>
+	<div class="fuel-row">
+		<div class="fuel-column">
+			<div class="fuel" id="fuel-unleaded-self">
+				<table>
+					<tr>
+						<th colspan="4">SUPER S.P. SERVITO</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<td class="narrow">N&deg;</td>
+						<td>Inizio turno</td>
+						<td>Fine turno</td>
+						<td>Litri</td>
+					</tr>
+					<tr class="pump" display="1" fuel="unleaded" type="patp">
+						<td class="narrow">1</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+					<tr class="pump" display="2" fuel="unleaded" type="patp">
+						<td class="narrow">2</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="fuel" id="fuel-unleaded-serv">
+				<table>
+					<tr>
+						<th colspan="4">SUPER S.P. SELF</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr class="pump" display="3" fuel="unleaded" type="self">
+						<td class="narrow">3</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+					<tr class="pump" display="4" fuel="unleaded" type="self">
+						<td class="narrow">4</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="fuel-column">
+			<div class="fuel" id="fuel-diesel-1">
+				<table>
+					<tr>
+						<th colspan="4">GASOLIO SELF</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="medium">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<td class="narrow">N&deg;</td>
+						<td class="medium">Inizio turno</td>
+						<td>Fine turno</td>
+						<td>Litri</td>
+					</tr>
+					<tr class="pump" display="5" fuel="diesel" type="self">
+						<td class="narrow">5</td>
+						<td class="medium" id="initial">/</td>
+						<td id="end">/</td>
+						<td id="difference">/</td>
+					</tr>
+					<tr class="pump" display="6" fuel="diesel" type="self">
+						<td class="narrow">6</td>
+						<td class="medium" id="initial">/</td>
+						<td id="end">/</td>
+						<td id="difference">/</td>
+					</tr>
+				</table>
+			</div>
+			<div class="fuel" id="fuel-diesel-2">
+				<table>
+					<tr>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="medium">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<td class="narrow">&nbsp;</td>
+						<td class="medium">&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="narrow">&nbsp;</td>
+						<td class="medium">&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="fuel-column">
+			<div class="fuel" id="prices">
+				<table>
+					<tr>
+						<td>PREZZI - &euro;/L</td>
+					</tr>
+					<tr>
+						<td id="price-unleaded">S.Pb.</td>
+					</tr>
+					<tr>
+						<td id="price-diesel">DIES.</td>
+					</tr>
+					<tr>
+						<td id="price-gpl">GPL</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="fuel-row">
+		<div class="fuel-column">
+			<div class="fuel" id="fuel-diesel-self">
+				<table>
+					<tr>
+						<th colspan="4">GASOLIO SERVITO</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<td class="narrow">N&deg;</td>
+						<td>Inizio turno</td>
+						<td>Fine turno</td>
+						<td>Litri</td>
+					</tr>
+					<tr class="pump" display="1" fuel="diesel" type="patp">
+						<td class="narrow">1</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+					<tr class="pump" display="2" fuel="diesel" type="patp">
+						<td class="narrow">2</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="fuel" id="fuel-diesel-serv">
+				<table>
+					<tr>
+						<th colspan="4">GASOLIO SELF</th>
+					</tr>
+					<colgroup>
+						<col span="1" class="narrow">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr class="pump" display="3" fuel="diesel" type="self">
+						<td class="narrow">3</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+					<tr class="pump" display="4" fuel="diesel" type="self">
+						<td class="narrow">4</td>
+						<td id="initial">&nbsp;</td>
+						<td id="end">&nbsp;</td>
+						<td id="difference">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="fuel-column">
+			<div class="fuel" id="fuel-gpl">
+				<table>
+					<colgroup>
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<th>GPL 1</td>
+						<th>GPL 2</td>
+						<th>GPL 3</td>
+						<th>GPL 4</td>
+					</tr>
+					<tr>
+						<td class="gpl-1" id="end">&nbsp;</td>
+						<td class="gpl-2" id="end">&nbsp;</td>
+						<td class="gpl-3" id="end">&nbsp;</td>
+						<td class="gpl-4" id="end">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="gpl-1" id="initial">&nbsp;</td>
+						<td class="gpl-2" id="initial">&nbsp;</td>
+						<td class="gpl-3" id="initial">&nbsp;</td>
+						<td class="gpl-4" id="initial">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="gpl-1">&nbsp;</td>
+						<td class="gpl-2">&nbsp;</td>
+						<td class="gpl-3">&nbsp;</td>
+						<td class="gpl-4">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="gpl-1" id="difference">&nbsp;</td>
+						<td class="gpl-2" id="difference">&nbsp;</td>
+						<td class="gpl-3" id="difference">&nbsp;</td>
+						<td class="gpl-4" id="difference">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="gpl-1">&nbsp;</td>
+						<td class="gpl-2">&nbsp;</td>
+						<td class="gpl-3">&nbsp;</td>
+						<td class="gpl-4">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="stuff" id="partial-total">
+				<table>
+					<colgroup>
+						<col span="1" class="wider">
+						<col span="1" class="wide">
+						<col span="1" class="wide">
+					</colgroup>
+					<tr>
+						<th>TOTALE PARZIALE</td>
+						<th>Litri</td>
+						<th>Euro</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="fuel-row">
+		<div class="fuel-column">
+			<div class="stuff" id="oil">
+				<table>
+					<tr>
+						<th>OLIO</th>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="stuff" id="deposits">
+				<table>
+					<tr>
+						<th>PRELIEVI</th>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="fuel-column">
+			<div class="stuff" id="accessories">
+				<table>
+					<tr>
+						<th>ACCESSORI</th>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff" id="whatnot">
+				<table>
+					<tr>
+						<th>VARIE</th>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff" id="half-total-1">
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff" id="phone-credit">
+				<table>
+					<tr>
+						<th>CREDITO TELEFONICO</th>
+					</tr>
+					<tr>
+						<td id="phone-credit-initial">&nbsp;INIZIO TURNO&nbsp;</td>
+					</tr>
+					<tr>
+						<td id="phone-credit-end">&nbsp;FINE TURNO&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff" id="gpl-clocks">
+				<table>
+					<tr>
+						<th>OROLOGI GPL</th>
+					</tr>
+					<tr>
+						<td id="gpl-clocks-initial">&nbsp;INIZIO TURNO&nbsp;</td>
+					</tr>
+					<tr>
+						<td id="gpl-clocks-end">&nbsp;FINE TURNO&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff" id="working-hours">
+				<table>
+					<tr>
+						<td>&nbsp;ORE LAV.&nbsp;</td>
+						<td id="working-hours">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="fuel-column">
+			<div class="stuff-totals" id="estimated-incomes">
+				<table>
+					<colgroup>
+						<col span="1" class="split1">
+						<col span="1" class="split2">
+						<col span="1" class="split3">
+					</colgroup>
+					<tr>
+						<th>CASSA</th>
+						<td>&nbsp;</td>
+						<td id="total-fund-initial">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>TOT. CARBURANTI</td>
+						<td class="total-fuel-litres">&nbsp;</td>
+						<td class="total-fuel-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>GPL</td>
+						<td id="total-gpl-litres">&nbsp;</td>
+						<td id="total-gpl-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>OLIO</td>
+						<td>&nbsp;</td>
+						<td id="total-oil-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>ACCESSORI</td>
+						<td>&nbsp;</td>
+						<td id="total-accessories">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>VARIE</td>
+						<td>&nbsp;</td>
+						<td id="total-whatnot">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>MANCATO EROG.</td>
+						<td>&nbsp;</td>
+						<td id="total-unsupplied">&nbsp;</td>
+					</tr>
+					<tr>
+						<th>TOTALE</th>
+						<td>&nbsp;</td>
+						<td id="grand-total">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff-totals">
+				<table>
+					<colgroup>
+						<col span="2" class="split">
+						<col span="1" class="split">
+					</colgroup>
+					<tr>
+						<th colspan="2" rowspan="2">DIFFERENZA</th>
+						<td rowspan="2" id="difference">&nbsp;</td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff-totals" id="actual-incomes">
+				<table>
+					<colgroup>
+						<col span="2" class="split">
+						<col span="1" class="split">
+					</colgroup>
+					<tr>
+						<th colspan="2">CASSA</th>
+						<td id="total-fund-end">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">PRELIEVI</td>
+						<td id="total-deposits">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">BUONI INTERNI</td>
+						<td id="total-coupons">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">CARTE DI CREDITO</td>
+						<td id="total-credit-cards">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">INCASSO CONTANTI OPT</td>
+						<td id="total-opt-cash">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">INCASSO CARTE OPT</td>
+						<td id="total-opt-credit-cards">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">CARDS PRIVATE</td>
+						<td id="total-private-cards">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">RIMBORSI OPT RICEVUTI</td>
+						<td id="total-opt-refunds">&nbsp;</td>
+					</tr>
+					<tr>
+						<th colspan="2">TOTALE</th>
+						<td id="grand-total">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="stuff-totals" id="grand-totals">
+				<table>
+					<colgroup>
+						<col span="1" class="split1">
+						<col span="1" class="split2">
+						<col span="1" class="split3">
+					</colgroup>
+					<tr>
+						<th>TOTALE</th>
+						<th>Litri</th>
+						<th>Euro</th>
+					</tr>
+					<tr>
+						<td>TOT. CARBURANTI</td>
+						<td class="total-fuel-litres">&nbsp;</td>
+						<td class="total-fuel-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>-</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>GPL</td>
+						<td id="grand-total-gpl-litres">&nbsp;</td>
+						<td id="grand-total-gpl-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>OLIO</td>
+						<td>&nbsp;</td>
+						<td id="grand-total-oil-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>ACCESSORI</td>
+						<td>&nbsp;</td>
+						<td id="grand-total-accessories-profit">&nbsp;</td>
+					</tr>
+					<tr>
+						<th>TOTALE</th>
+						<td id="grand-total-litres">&nbsp;</td>
+						<td id="grand-total-profit">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

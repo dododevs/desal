@@ -189,29 +189,20 @@ public class PdfModelCompiler {
 
         this.page1.selectFirst("#total-fund-initial")
                 .text(formatEuroPrice(estimatedIncomes.getInitialFund()));
-        for (final FortechTotal total : estimatedIncomes.getFortechTotals()) {
-            this.page1.selectFirst(String.format(Locale.ITALIAN, ".total-fuel-litres[fuel=%s][type=%s]",
-                    total.getFuel().toString(), total.getType().toString()))
-                        .text(formatTwoFractionDigitsNumber(total.getTotalLitres()));
-            this.page1.selectFirst(String.format(Locale.ITALIAN, ".total-fuel-profit[fuel=%s][type=%s]",
-                    total.getFuel().toString(), total.getType().toString()))
-                        .text(formatTwoFractionDigitsNumber(total.getTotalProfit()));
-        }
-
+        this.page1.selectFirst("#total-fuel-litres")
+                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getFortechTotal().getTotalLitres()));
+        this.page1.selectFirst("#total-fuel-profit")
+                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getFortechTotal().getTotalProfit()));
+        this.page1.selectFirst("#total-gpl-profit")
+                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getGplTotal()));
         this.page1.selectFirst("#total-oil-profit")
                 .text(formatTwoFractionDigitsNumber(estimatedIncomes.getOilTotal()));
-        this.page1.selectFirst("#grand-total-oil-profit")
-                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getOilTotal()));
         this.page1.selectFirst("#total-accessories")
-                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getAccessoriesTotal()));
-        this.page1.selectFirst("#grand-total-accessories-profit")
                 .text(formatTwoFractionDigitsNumber(estimatedIncomes.getAccessoriesTotal()));
         this.page1.selectFirst("#total-whatnot")
                 .text(formatTwoFractionDigitsNumber(estimatedIncomes.getWhatnotTotal()));
         this.page1.selectFirst("#total-unsupplied")
                 .text(formatTwoFractionDigitsNumber(estimatedIncomes.getOptUnsupplied()));
-        this.page1.selectFirst("#total-oil-profit")
-                .text(formatTwoFractionDigitsNumber(estimatedIncomes.getOilTotal()));
         this.page1.selectFirst("#estimated-incomes #grand-total")
                 .text(formatTwoFractionDigitsNumber(estimatedIncomes.getGrandTotal()));
 
@@ -260,25 +251,34 @@ public class PdfModelCompiler {
         }
     }
 
-    public void setGrandTotalForFuel(final Fuel fuel, double litres, double profit) {
-        if (fuel == Fuel.GPL) {
-            this.page1.selectFirst("#total-gpl-litres")
-                    .text(formatTwoFractionDigitsNumber(litres));
-            this.page1.selectFirst("#total-gpl-profit")
-                    .text(formatTwoFractionDigitsNumber(profit));
-        }
-        this.page1.selectFirst(String.format(Locale.ITALIAN,
-                "#grand-total-%s-profit", fuel.toString()))
-                    .text(formatTwoFractionDigitsNumber(profit));
-        this.page1.selectFirst(String.format(Locale.ITALIAN,
-                "#grand-total-%s-litres", fuel))
-                    .text(formatTwoFractionDigitsNumber(litres));
+    public void setGrandTotalForFuel(double litres, double profit) {
+        this.page1.selectFirst("#grand-total-fuel-litres")
+                .text(formatTwoFractionDigitsNumber(litres));
+        this.page1.selectFirst("#grand-total-fuel-profit")
+                .text(formatTwoFractionDigitsNumber(profit));
+    }
+
+    public void setGrandTotalForGpl(double litres, double profit) {
+        this.page1.selectFirst("#grand-total-gpl-litres")
+                .text(formatTwoFractionDigitsNumber(litres));
+        this.page1.selectFirst("#grand-total-gpl-profit")
+                .text(formatTwoFractionDigitsNumber(profit));
     }
 
     public void setGrandTotal(double litres, double profit) {
         this.page1.selectFirst("#grand-total-litres")
                 .text(formatTwoFractionDigitsNumber(litres));
         this.page1.selectFirst("#grand-total-profit")
+                .text(formatTwoFractionDigitsNumber(profit));
+    }
+
+    public void setGrandTotalForAccessories(double profit) {
+        this.page1.selectFirst("#grand-total-oil-profit")
+                .text(formatTwoFractionDigitsNumber(profit));
+    }
+
+    public void setGrandTotalForOil(double profit) {
+        this.page1.selectFirst("#grand-total-accessories-profit")
                 .text(formatTwoFractionDigitsNumber(profit));
     }
 

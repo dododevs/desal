@@ -86,11 +86,78 @@
                 android:textAllCaps="true"
                 app:textStyle="semiBold"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/activity_owner_shift_revision_fortech_totals_container"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_local_gas_station"
+                    android:contentDescription="@string/cd_fortech_total_litres_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp">
+
+                    <revolver.desal.view.PromptedEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_owner_shift_revision_fortech_litres"
+                        android:inputType="numberDecimal"
+                        android:hint="@string/activity_owner_shift_revision_fortech_litres"
+                        android:imeOptions="actionNext"
+                        app:promptText="L"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_profit"
+                    android:contentDescription="@string/cd_fortech_total_profit_icon"
+                    app:tint="@color/darkGray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp">
+
+                    <revolver.desal.view.PromptedEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_owner_shift_revision_fortech_profit"
+                        android:inputType="numberDecimal"
+                        android:hint="@string/activity_owner_shift_revision_fortech_profit"
+                        android:imeOptions="actionNext"
+                        app:promptText="€"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
             <revolver.desal.view.MontserratTextView
                 android:layout_width="wrap_content"

@@ -2,6 +2,11 @@ package revolver.desal.ui.activity.employee;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -34,7 +39,7 @@ import revolver.desal.ui.activity.MainActivity;
 import revolver.desal.ui.adapter.TransactionsListAdapter;
 import revolver.desal.util.ui.Snacks;
 
-public class ShiftActivity extends AppCompatActivity {
+public class ShiftActivity extends AppCompatActivity implements ActivityResultCallback<ActivityResult> {
 
     private static final int END_SHIFT_REQUEST_ID = "shutIt!".hashCode() & 0xffff;
 
@@ -86,9 +91,14 @@ public class ShiftActivity extends AppCompatActivity {
         });
         list.setAdapter(mAdapter = new TransactionsListAdapter(new ArrayList<>(), false));
 
+        final ActivityResultLauncher<Intent> activityResult =
+                registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this);
+
         final TextView endShiftView = findViewById(R.id.activity_shift_end);
-        endShiftView.setOnClickListener(v -> startActivityForResult(new Intent(ShiftActivity.this, BeginOrEndShiftActivity.class)
-                .putExtra("mode", "end").putExtra("shift", mShift), END_SHIFT_REQUEST_ID));
+        endShiftView.setOnClickListener(v -> {
+            activityResult.launch(new Intent(ShiftActivity.this, BeginOrEndShiftActivity.class)
+                    .putExtra("mode", "end").putExtra("shift", mShift));
+        });
 
         mTransactionsContainer = findViewById(R.id.activity_shift_transactions_container);
         mNoTransactionsView = findViewById(R.id.activity_shift_no_transactions);
@@ -111,6 +121,11 @@ public class ShiftActivity extends AppCompatActivity {
         if (requestCode == END_SHIFT_REQUEST_ID && resultCode == RESULT_OK) {
             finish();
         }
+    }
+
+    @Override
+    public void onActivityResult(ActivityResult result) {
+
     }
 
     private void switchToNextGplClock() {

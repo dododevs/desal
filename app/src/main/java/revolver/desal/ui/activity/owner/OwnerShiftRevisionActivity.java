@@ -51,7 +51,6 @@ public class OwnerShiftRevisionActivity extends AppCompatActivity {
     private GasStation mStation;
     private Shift mShift;
     private RevisionData mRevisionData;
-    private boolean mIgnoreMaximumDifference = false;
 
     private TextInputEditText mFortechTotalLitresView;
     private TextInputEditText mFortechTotalProfitView;

@@ -433,15 +433,12 @@ public class EmployeeStationFragment extends Fragment
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.popup_prices_copy:
-                    saveToClipboard(mAnchorValueView.getText().toString());
-                    Toast.makeText(mContext,
-                            R.string.fragment_employee_station_price_copied, Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.popup_prices_edit:
-                    EditPriceDialog.editPriceAndSubmit(mStation, mPrice, mHost).show(mFragmentManager, "");
-                    break;
+            if (item.getItemId() == R.id.popup_prices_copy) {
+                saveToClipboard(mAnchorValueView.getText().toString());
+                Toast.makeText(mContext,
+                        R.string.fragment_employee_station_price_copied, Toast.LENGTH_SHORT).show();
+            } else if (item.getItemId() == R.id.popup_prices_edit) {
+                EditPriceDialog.editPriceAndSubmit(mStation, mPrice, mHost).show(mFragmentManager, "");
             }
             return true;
         }

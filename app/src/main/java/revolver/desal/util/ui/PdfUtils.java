@@ -2,6 +2,7 @@ package revolver.desal.util.ui;
 
 import android.content.Context;
 import android.print.PdfPrinter;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -11,6 +12,9 @@ import com.tom_roush.pdfbox.multipdf.PDFMergerUtility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
 
 import revolver.desal.view.PrintableWebView;
 
@@ -40,7 +44,7 @@ public final class PdfUtils {
                 renderer.renderToPdf(path, name, callback);
             }
         });
-        renderer.loadData(data, "text/html", null);
+        renderer.loadDataWithBaseURL(null, data, "text/html", null, null);
         return true;
     }
 
@@ -61,6 +65,24 @@ public final class PdfUtils {
             return null;
         }
         return output;
+    }
+
+    public static boolean mergePdfFiles(final OutputStream outStream, File... pdfs) {
+        final PDFMergerUtility merger = new PDFMergerUtility();
+        for (File pdf : pdfs) {
+            try {
+                merger.addSource(pdf);
+            } catch (FileNotFoundException e) {
+                return false;
+            }
+        }
+        merger.setDestinationStream(outStream);
+        try {
+            merger.mergeDocuments(MemoryUsageSetting.setupTempFileOnly());
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
     }
 
 }

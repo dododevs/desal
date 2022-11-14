@@ -96,6 +96,13 @@ public class ShiftPumpDataEditActivity extends AppCompatActivity {
             return;
         }
 
+        double difference = end - initial;
+        if (difference <= 0 || difference > 6000.0) {
+            mInitialView.setError(getString(R.string.dialog_pump_end_value_difference_error));
+            mEndView.setError(getString(R.string.dialog_pump_end_value_difference_error));
+            return;
+        }
+
         final List<ShiftPumpData> initialPumpData = new ArrayList<>(mShift.getInitialData().getPumpsData());
         for (int i = 0; i < initialPumpData.size(); i++) {
             if (initialPumpData.get(i).getPid().equals(mKey)) {

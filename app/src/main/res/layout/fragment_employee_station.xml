@@ -53,24 +53,6 @@
                     android:textColor="@android:color/tertiary_text_light"
                     android:textAlignment="center"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="8dp"
-                    android:id="@+id/fragment_employee_station_shifts_archive"
-                    android:padding="6dp"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawablePadding="4dp"
-                    android:text="@string/fragment_employee_station_shift_archive"
-                    android:textSize="14.2sp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"/>
-
             </LinearLayout>
 
             <LinearLayout
@@ -112,6 +94,23 @@
                     android:textAlignment="center"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical"
+                android:id="@+id/fragment_employee_station_shifts_archive"
+                android:padding="6dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="4dp"
+                android:text="@string/fragment_employee_station_shift_archive"
+                android:textSize="14.2sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
 
             <revolver.desal.view.MontserratTextView
                 android:layout_width="wrap_content"

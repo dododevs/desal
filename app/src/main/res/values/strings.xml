@@ -437,7 +437,7 @@
     <string name="activity_owner_validation_url_hint">Indirizzo di convalida</string>
     <string name="activity_owner_validation_url_invalid">Inserisci un valore valido</string>
     <string name="activity_owner_main_navi_validation">Convalida nuovo utente</string>
-    <string name="fragment_shift_pdf_model_success">File salvato in %s.</string>
+    <string name="fragment_shift_pdf_model_success">File salvato nella cartella Downloads.</string>
     <string name="fragment_shift_pdf_model_include_grand_total">Includi il totale finale giornata</string>
     <string name="cd_day_total">Icona del totale giornata</string>
     <string name="fragment_shift_pdf_model_include_grand_total_description">Somma i valori totali di tutti i turni conclusi di oggi e riportali nella sezione in basso a destra.</string>

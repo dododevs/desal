@@ -60,13 +60,13 @@ public class PdfModelsAdapter extends RecyclerView.Adapter<PdfModelsAdapter.View
 
         viewHolder.mPreviewView.getSettings().setUseWideViewPort(true);
         viewHolder.mPreviewView.getSettings().setLoadWithOverviewMode(true);
-        viewHolder.mPreviewView.loadData(model.getPage1(), "text/html", null);
         viewHolder.mPreviewView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 viewHolder.mPreviewWheelView.setVisibility(View.GONE);
             }
         });
+        viewHolder.mPreviewView.loadDataWithBaseURL(null, model.getPage1(), "text/html", null, null);
         viewHolder.mTitleView.setText(TextUtils.capitalizeWords(model.getAttributes().getName()));
         viewHolder.mSubtitleView.setText(buildSubtitle(model.getAttributes()));
 

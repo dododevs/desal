@@ -9,10 +9,6 @@ import java.io.File;
 
 public class PrintableWebView extends WebView {
 
-    private File mOutputPath;
-    private String mOutputName;
-    private File mOutput;
-
     public PrintableWebView(Context context) {
         super(context);
     }

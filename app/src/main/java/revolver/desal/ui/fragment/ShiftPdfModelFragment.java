@@ -1,16 +1,25 @@
 package revolver.desal.ui.fragment;
 
+import static android.os.Build.VERSION_CODES.Q;
+
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.print.PdfPrinter;
 
 import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -21,6 +30,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +44,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,7 +79,7 @@ import revolver.desal.util.ui.PdfUtils;
 import revolver.desal.util.ui.Snacks;
 
 public class ShiftPdfModelFragment extends Fragment
-        implements ActivityResultCallback<Map<String, Boolean>> {
+        implements ActivityResultCallback<Boolean> {
 
     private GasStation mStation;
     private Shift mShift;
@@ -91,6 +104,17 @@ public class ShiftPdfModelFragment extends Fragment
     private boolean mIncludeDayGrandTotal = false;
     private List<Shift> mSameDayEndedShifts;
     private List<Transaction> mRejectedTransactions;
+
+    private ActivityResultLauncher<String> mPermissionsRequestLauncher;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mPermissionsRequestLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                this
+        );
+    }
 
     @Nullable
     @Override
@@ -122,7 +146,7 @@ public class ShiftPdfModelFragment extends Fragment
         final WebView previewView = v.findViewById(R.id.fragment_shift_pdf_model_preview);
         previewView.getSettings().setUseWideViewPort(true);
         previewView.getSettings().setLoadWithOverviewMode(true);
-        previewView.loadData(mEmptyPdfModel.getPage1(), "text/html", null);
+        previewView.loadDataWithBaseURL(null, mEmptyPdfModel.getPage1(), "text/html", null, null);
 
         mConfirmView = v.findViewById(R.id.fragment_shift_pdf_model_create_confirm);
         mConfirmView.setOnClickListener(v12 -> startPdfWrite());
@@ -267,14 +291,15 @@ public class ShiftPdfModelFragment extends Fragment
             compiler.setGrandTotalForOil(getGrandTotalForOil(endedTodayShifts));
             mPdfModel = compiler.getCompiledModel();
         } catch (Exception e) {
+            Log.e("ShiftPdfModelFragment", "failed compiling model", e);
             return false;
         }
         return true;
     }
 
     private void startPdfWrite() {
-        startLoading();
-        if (hasWritePermission()) {
+        if (Build.VERSION.SDK_INT >= Q || hasWritePermission()) {
+            startLoading();
             writePage1ToFile();
         } else {
             requestWritePermission();
@@ -333,6 +358,7 @@ public class ShiftPdfModelFragment extends Fragment
 
             @Override
             public void onPrintFailed(CharSequence error) {
+                Log.d("onPrintFailed", String.valueOf(error));
                 ShiftPdfModelFragment.this.onPrintFailed();
             }
         };
@@ -342,27 +368,65 @@ public class ShiftPdfModelFragment extends Fragment
         }
     }
 
-    private void mergePagesAndWriteToFile() {
-        final File output = PdfUtils.mergePdfFiles(
-                Environment.getExternalStorageDirectory(), generateFilename(),
-                    new File(requireContext().getCacheDir().getAbsolutePath() + "/page1.pdf"),
-                        new File(requireContext().getCacheDir().getAbsolutePath() + "/page2.pdf"));
-        if (output == null) {
-            onPrintFailed();
-            return;
+    @RequiresApi(Q)
+    private Uri mergePagesAndWriteToFileUsingMediaStore(String filename) {
+        final ContentValues values = new ContentValues();
+        values.put(MediaStore.MediaColumns.DISPLAY_NAME, filename);
+        values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+        values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+
+        final ContentResolver resolver = requireContext().getContentResolver();
+        final Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+        try {
+            final OutputStream outfile = resolver.openOutputStream(uri);
+            if (uri != null) {
+                PdfUtils.mergePdfFiles(outfile,
+                        new File(requireContext()
+                                .getCacheDir().getAbsolutePath() +
+                                "/page1.pdf"),
+                        new File(requireContext()
+                                .getCacheDir().getAbsolutePath() +
+                                "/page2.pdf")
+                );
+            }
+        } catch (FileNotFoundException e) {
+            return null;
         }
-        stopLoading();
+        return uri;
+    }
+
+    private void mergePagesAndWriteToFile() {
+        final String filename = generateFilename();
+
+        final Uri merged;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            merged = mergePagesAndWriteToFileUsingMediaStore(filename);
+            if (merged == null) {
+                onPrintFailed();
+                return;
+            }
+        } else {
+            final File output = PdfUtils.mergePdfFiles(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), generateFilename(),
+                        new File(requireContext().getCacheDir().getAbsolutePath() + "/page1.pdf"),
+                            new File(requireContext().getCacheDir().getAbsolutePath() + "/page2.pdf"));
+            if (output == null) {
+                onPrintFailed();
+                return;
+            }
+            merged = FileProvider.getUriForFile(requireContext(),
+                    BuildConfig.APPLICATION_ID + ".provider", output);
+            stopLoading();
+        }
 
         final Intent i = new Intent(Intent.ACTION_VIEW)
-                .setDataAndType(FileProvider.getUriForFile(requireContext(),
-                        BuildConfig.APPLICATION_ID + ".provider", output), "application/pdf")
+                .setDataAndType(merged, "application/pdf")
                 .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         if (i.resolveActivity(requireContext().getPackageManager()) != null) {
             startActivity(i);
         } else {
             Toast.makeText(getContext(),
-                    getString(R.string.fragment_shift_pdf_model_success,
-                            output.getAbsolutePath()), Toast.LENGTH_LONG).show();
+                    getString(R.string.fragment_shift_pdf_model_success), Toast.LENGTH_LONG).show();
             requireActivity().onBackPressed();
         }
     }
@@ -385,15 +449,12 @@ public class ShiftPdfModelFragment extends Fragment
     }
 
     private void requestWritePermission() {
-        registerForActivityResult(
-                new ActivityResultContracts.RequestMultiplePermissions(),
-                this
-        ).launch(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE });
+        mPermissionsRequestLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     @Override
-    public void onActivityResult(Map<String, Boolean> result) {
-        if (Boolean.TRUE.equals(result.get(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
+    public void onActivityResult(Boolean result) {
+        if (result) {
             writePage1ToFile();
         } else {
             stopLoading();

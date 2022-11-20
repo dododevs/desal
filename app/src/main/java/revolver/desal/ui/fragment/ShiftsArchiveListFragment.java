@@ -72,7 +72,7 @@ public class ShiftsArchiveListFragment extends Fragment {
                 .putExtra("shift", shift)));
 
         mRefresher = v.findViewById(R.id.refresh);
-        mRefresher.setOnRefreshListener(() -> refreshShiftsArchive());
+        mRefresher.setOnRefreshListener(this::refreshShiftsArchive);
 
         mNoShiftsView = v.findViewById(R.id.activity_shifts_archive_no_shifts);
         mSnackbarContainer = v.findViewById(R.id.activity_shifts_archive);

@@ -275,12 +275,12 @@ public class PdfModelCompiler {
     }
 
     public void setGrandTotalForAccessories(double profit) {
-        this.page1.selectFirst("#grand-total-oil-profit")
+        this.page1.selectFirst("#grand-total-accessories-profit")
                 .text(formatTwoFractionDigitsNumber(profit));
     }
 
     public void setGrandTotalForOil(double profit) {
-        this.page1.selectFirst("#grand-total-accessories-profit")
+        this.page1.selectFirst("#grand-total-oil-profit")
                 .text(formatTwoFractionDigitsNumber(profit));
     }
 

@@ -1,5 +1,6 @@
 package revolver.desal.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -57,6 +60,7 @@ public class ShiftsArchiveAdapter extends RecyclerView.Adapter<ShiftsArchiveAdap
 
     public ShiftsArchiveAdapter(List<Shift> shifts) {
         mShifts = shifts;
+        sortShifts();
     }
 
     @NonNull
@@ -121,9 +125,15 @@ public class ShiftsArchiveAdapter extends RecyclerView.Adapter<ShiftsArchiveAdap
         return mShifts.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateShifts(List<Shift> shifts) {
         mShifts = shifts;
+        sortShifts();
         notifyDataSetChanged();
+    }
+
+    private void sortShifts() {
+        Collections.sort(mShifts, (s1, s2) -> (int) Math.signum(s2.getStart() - s1.getStart()));
     }
 
     public void setOnShiftClickedListener(OnShiftClickedListener listener) {

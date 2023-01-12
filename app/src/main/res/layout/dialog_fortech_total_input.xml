@@ -7,7 +7,7 @@
     android:background="@drawable/dialog_white_rounded_background"
     android:padding="16dp">
 
-    <revolver.desal.view.MontserratTextView
+    <it.stazionidesal.desal.view.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
-            <revolver.desal.view.PromptedEditText
+            <it.stazionidesal.desal.view.PromptedEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
-            <revolver.desal.view.PromptedEditText
+            <it.stazionidesal.desal.view.PromptedEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

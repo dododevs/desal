@@ -50,7 +50,7 @@
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground">
 
-                <revolver.desal.view.MontserratTextView
+                <it.stazionidesal.desal.view.MontserratTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -75,7 +75,7 @@
 
             </LinearLayout>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -110,7 +110,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_fortech_litres"
@@ -146,7 +146,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_fortech_profit"
@@ -159,7 +159,7 @@
 
             </LinearLayout>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -193,7 +193,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_opt_cash"
@@ -230,7 +230,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_opt_credit_card"
@@ -267,7 +267,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_opt_refunds"
@@ -304,7 +304,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_opt_unsupplied"
@@ -317,7 +317,7 @@
 
             </LinearLayout>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -351,7 +351,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_shift_revision_cards"

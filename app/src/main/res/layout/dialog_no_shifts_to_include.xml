@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/dialog_white_rounded_background">
 
-    <revolver.desal.view.MontserratTextView
+    <it.stazionidesal.desal.view.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

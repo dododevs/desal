@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:animateLayoutChanges="true">
 
-    <revolver.desal.view.MontserratTextView
+    <it.stazionidesal.desal.view.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dialog_ended_shift_difference_title"
@@ -32,7 +32,7 @@
             android:textColor="@android:color/black"
             android:id="@+id/dialog_ended_shift_difference_end_value"/>
 
-        <revolver.desal.view.MontserratTextView
+        <it.stazionidesal.desal.view.MontserratTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -44,7 +44,7 @@
 
     </LinearLayout>
 
-    <revolver.desal.view.MontserratTextView
+    <it.stazionidesal.desal.view.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -71,7 +71,7 @@
             android:textColor="@android:color/black"
             android:id="@+id/dialog_ended_shift_difference_initial_value"/>
 
-        <revolver.desal.view.MontserratTextView
+        <it.stazionidesal.desal.view.MontserratTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -83,7 +83,7 @@
 
     </LinearLayout>
 
-    <revolver.desal.view.MontserratTextView
+    <it.stazionidesal.desal.view.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -110,7 +110,7 @@
             android:textColor="@android:color/black"
             android:id="@+id/dialog_ended_shift_difference_value"/>
 
-        <revolver.desal.view.MontserratTextView
+        <it.stazionidesal.desal.view.MontserratTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

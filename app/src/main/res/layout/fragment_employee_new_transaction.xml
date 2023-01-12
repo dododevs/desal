@@ -97,7 +97,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="8dp">
 
-                <revolver.desal.view.PromptedEditText
+                <it.stazionidesal.desal.view.PromptedEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/fragment_employee_new_transaction_value"

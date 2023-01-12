@@ -32,7 +32,7 @@
             android:layout_marginTop="56dp"
             android:layout_marginBottom="48dp">
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -102,7 +102,7 @@
                     android:id="@+id/activity_owner_inventory_new_item_price_field_container"
                     android:layout_marginStart="16dp">
 
-                    <revolver.desal.view.PromptedEditText
+                    <it.stazionidesal.desal.view.PromptedEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/activity_owner_inventory_new_item_price"
@@ -211,7 +211,7 @@
 
             </LinearLayout>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -300,7 +300,7 @@
 
                 </LinearLayout>
 
-                <revolver.desal.view.HorizontalNumberPicker
+                <it.stazionidesal.desal.view.HorizontalNumberPicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

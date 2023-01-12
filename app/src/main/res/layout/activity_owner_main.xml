@@ -116,7 +116,7 @@
                     android:contentDescription="@string/cd_station_icon"
                     app:tint="@color/darkGray" />
 
-                <revolver.desal.view.MontserratTextView
+                <it.stazionidesal.desal.view.MontserratTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -149,7 +149,7 @@
                     android:contentDescription="@string/cd_privileges_icon"
                     app:tint="@color/darkGray" />
 
-                <revolver.desal.view.MontserratTextView
+                <it.stazionidesal.desal.view.MontserratTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -183,7 +183,7 @@
                     android:contentDescription="@string/cd_settings_icon"
                     app:tint="@color/darkGray" />
 
-                <revolver.desal.view.MontserratTextView
+                <it.stazionidesal.desal.view.MontserratTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

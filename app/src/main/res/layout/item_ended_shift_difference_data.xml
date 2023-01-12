@@ -38,7 +38,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="24sp"/>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -91,7 +91,7 @@
                 android:textColor="@android:color/black"
                 android:id="@+id/item_ended_shift_difference_data_initial_value"/>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -128,7 +128,7 @@
                 android:textColor="@android:color/black"
                 android:id="@+id/item_ended_shift_difference_data_end_value"/>
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

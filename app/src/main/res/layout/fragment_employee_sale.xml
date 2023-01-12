@@ -232,7 +232,7 @@
 
         </LinearLayout>
 
-        <revolver.desal.view.MontserratTextView
+        <it.stazionidesal.desal.view.MontserratTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -260,7 +260,7 @@
                 android:textSize="16.8sp"
                 android:textColor="@android:color/black"/>
 
-            <revolver.desal.view.HorizontalNumberPicker
+            <it.stazionidesal.desal.view.HorizontalNumberPicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -271,7 +271,7 @@
 
         </LinearLayout>
 
-        <revolver.desal.view.MontserratTextView
+        <it.stazionidesal.desal.view.MontserratTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -447,7 +447,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp">
 
-            <revolver.desal.view.MontserratTextView
+            <it.stazionidesal.desal.view.MontserratTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 33
     defaultConfig {
-        applicationId "revolver.desal"
+        applicationId "it.stazionidesal.desal"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 7
@@ -15,7 +15,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'revolver.desal'
+    namespace 'it.stazionidesal.desal'
 }
 
 dependencies {
